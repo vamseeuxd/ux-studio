@@ -1,0 +1,41 @@
+<form #editForm="ngForm" class="input-group" *ngIf="isEdit">
+  <input autocomplete="off"
+         type="text"
+         name="name"
+         [ngModel]="form.name"
+         (keyup.enter)="onUpdateForm(form.id,editForm)"
+         minlength="3" maxlength="20" required
+         class="form-control"
+         placeholder="Form Name to Update">
+  <div class="input-group-append">
+    <button (click)="onUpdateForm(form.id,editForm)"
+            [disabled]="editForm.invalid"
+            class="btn btn-primary btn-sm"
+            type="button">
+      <i class="fa fa-save"></i>
+    </button>
+    <button (click)="formToEdit = '';formToEditChange.emit('')"
+            class="btn btn-dark btn-sm"
+            type="button">
+      <i class="fa fa-close"></i>
+    </button>
+  </div>
+</form>
+
+<form #addForm="ngForm" class="input-group" *ngIf="!isEdit">
+  <input autocomplete="off"
+         type="text"
+         name="name"
+         ngModel
+         minlength="3"
+         maxlength="20"
+         required
+         (keyup.enter)="onAddForm(addForm)"
+         class="form-control"
+         placeholder="New Form Name">
+  <div class="input-group-append">
+    <button (click)="onAddForm(addForm)" [disabled]="addForm.invalid" class="btn btn-sm btn-primary" type="button">
+      <i class="fa fa-save"></i>
+    </button>
+  </div>
+</form>

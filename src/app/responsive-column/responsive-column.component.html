@@ -1,0 +1,82 @@
+<ng-content></ng-content>
+<!--<button class="btn btn-danger delete-button" (click)="deleteComponent.emit(component)">
+  <i class="fa fa-trash"></i>
+</button>-->
+
+<div class="action-buttons">
+  <button type="button" class="btn btn-warning btn-sm mr-1" (click)="editComponent.emit(component.id)">
+    <i class="fa fa-edit"></i>
+  </button>
+  <button type="button" class="btn btn-danger btn-sm mr-1" (click)="deleteComponent.emit(component);">
+    <i class="fa fa-trash"></i>
+  </button>
+  <button type="button" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+    <i class="fa fa-clone"></i>
+  </button>
+</div>
+
+<!--<pre>{{component|json}}</pre>-->
+
+<div *ngIf="editComponentId == component.id" class="shadow components-list" cdkDrag cdkDragBoundary=".design-space-inner">
+  <h6 class="text-white m-0 title">Edit {{_lodash.startCase(component.type)}}
+    Component
+    <i style="cursor: move" class="ml-3 fa fa-arrows text-white move-icon" tooltip="Move Panel" cdkDragHandle></i>
+    <i style="cursor: pointer" class="ml-3 fa fa-close text-white" tooltip="Close" (click)="editComponent.emit('')"></i>
+  </h6>
+  <ul class="list-group bg-transparent text-white">
+    <li class="list-group-item bg-transparent">
+      <a tooltip="Toggle Menu" (click)="openWidth=!openWidth" style="cursor: pointer">
+        <i class="fa fa-sign-out mr-2 mb-2"></i>Width
+        <i [class.fa-folder-open-o]="openWidth" [class.fa-folder-o]="!openWidth" class="fa float-right"></i>
+        <div class="clearfix"></div>
+      </a>
+      <ul class="list-group bg-transparent text-white" *ngIf="openWidth">
+        <li class="list-group-item bg-transparent">All : {{component.col_all}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_all" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">XL : {{component.col_xl}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_xl" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">LG :  {{component.col_lg}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_lg" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">MD :  {{component.col_md}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_md" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">SM :  {{component.col_sm}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_sm" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">XS :  {{component.col_xs}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_xs" type="range" min="0" max="12"></li>
+      </ul>
+    </li>
+    <li class="list-group-item bg-transparent">
+      <a  tooltip="Toggle Menu" (click)="openOffset=!openOffset" style="cursor: pointer">
+        <i class="fa fa-sign-in mr-2 mb-2"></i>Offset
+        <i [class.fa-folder-open-o]="openOffset" [class.fa-folder-o]="!openOffset" class="fa float-right"></i>
+        <div class="clearfix"></div>
+      </a>
+      <ul class="list-group bg-transparent text-white" *ngIf="openOffset">
+        <li class="list-group-item bg-transparent">All : {{component.offset_all}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_all" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">XL : {{component.offset_xl}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_xl" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">LG :  {{component.offset_lg}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_lg" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">MD :  {{component.offset_md}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_md" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">SM :  {{component.offset_sm}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_sm" type="range" min="0" max="12"></li>
+        <li class="list-group-item bg-transparent">XS :  {{component.offset_xs}}
+          <br>
+          <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_xs" type="range" min="0" max="12"></li>
+      </ul>
+    </li>
+  </ul>
+</div>

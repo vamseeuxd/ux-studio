@@ -1,0 +1,26 @@
+:host {
+  position: relative;
+
+  .action-buttons {
+    bottom: 0;
+    left: 15px;
+    position: absolute;
+  }
+
+  .components-list {
+    min-width: 100px;
+    padding: 0px;
+    min-height: 300px;
+    background: #535353;
+    border: 5px solid #424242;
+    position: fixed;
+    top: calc(10vh);
+    left: calc(50vw - 200px);
+    z-index: 10000000000000;
+
+    .title {
+      background-color: #424242;
+      padding: 10px 25px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 10px;
+
+  .marvel-device {
+    &.iphone-x {
+      // transform: scale(0.6) translate3d(10px, -250px, 10px)
+    }
+  }
+}

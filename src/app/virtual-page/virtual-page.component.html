@@ -1,0 +1,140 @@
+<div class="container-fluid pb-5">
+  <div class="btn-group" dropdown class="add-component-drop-down">
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      Add Component <span class="caret"></span>
+    </button>
+    <ul *dropdownMenu class="dropdown-menu">
+      <li role="menuitem"><a (click)="addAlertSuccess()" class="dropdown-item">ALERT_SUCCESS</a></li>
+      <li role="menuitem"><a (click)="addAlertInfo()" class="dropdown-item">ALERT_INFO</a></li>
+      <li role="menuitem"><a (click)="addAlertWarning()" class="dropdown-item">ALERT_WARNING</a></li>
+      <li role="menuitem"><a (click)="addAlertDanger()" class="dropdown-item">ALERT_DANGER</a></li>
+      <li role="menuitem"><a (click)="addCarousel()" class="dropdown-item">CAROUSEL</a></li>
+      <li role="menuitem"><a (click)="addAccordion()" class="dropdown-item">ACCORDION</a></li>
+      <li role="menuitem"><a (click)="addProgressbar()" class="dropdown-item">PROGRESSBAR</a></li>
+      <li role="menuitem"><a (click)="addTabSet()" class="dropdown-item">TAB_SET</a></li>
+      <li role="menuitem"><a (click)="addPagination()" class="dropdown-item">PAGINATION</a></li>
+      <li role="menuitem"><a (click)="addCard()" class="dropdown-item">CARD</a></li>
+
+    </ul>
+  </div>
+  <div class="row">
+    <ng-container *ngFor="let component of components" [ngSwitch]="component.type">
+      <ng-container *ngSwitchCase="component_type.ALERT_SUCCESS">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <alert type="success"><strong>Well done!</strong> You successfully read this important alert message.</alert>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.ALERT_INFO">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <alert type="info"><strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+          </alert>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.ALERT_WARNING">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <alert type="warning"><strong>Warning!</strong> Better check yourself, you're not looking too good.</alert>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.ALERT_DANGER">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <alert type="danger"><strong>Oh snap!</strong> Change a few things up and try submitting again.</alert>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.CAROUSEL">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <carousel>
+            <slide><img src="https://valor-software.com/ngx-bootstrap/assets/images/nature/1.jpg" alt="first slide"
+                        style="display: block; width: 100%;"></slide>
+            <slide><img src="https://valor-software.com/ngx-bootstrap/assets/images/nature/2.jpg" alt="second slide"
+                        style="display: block; width: 100%;"></slide>
+            <slide><img src="https://valor-software.com/ngx-bootstrap/assets/images/nature/3.jpg" alt="third slide"
+                        style="display: block; width: 100%;"></slide>
+          </carousel>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.ACCORDION">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <accordion>
+            <accordion-group heading="Static Header">
+              This content is straight in the template.
+            </accordion-group>
+            <accordion-group heading="Another group">
+              <p>Some content</p>
+            </accordion-group>
+            <accordion-group heading="Another group">
+              <p>Some content</p>
+            </accordion-group>
+            <accordion-group heading="Another group">
+              <p>Some content</p>
+            </accordion-group>
+          </accordion>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.PROGRESSBAR">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <progressbar [value]="55"></progressbar>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.TAB_SET">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <tabset>
+            <tab heading="Basic title" id="tab1">Basic content</tab>
+            <tab heading="Basic Title 1">Basic content 1</tab>
+            <tab heading="Basic Title 2">Basic content 2</tab>
+          </tabset>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.PAGINATION">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <pagination [totalItems]="64"></pagination>
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.CARD">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+          <div class="card text-center">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer text-muted">
+              2 days ago
+            </div>
+          </div>
+        </app-responsive-column>
+      </ng-container>
+
+    </ng-container>
+
+    <div class="device-resolution-mask">
+      <h1 class="col-12 text-center text-muted d-block d-sm-none">XS</h1>
+      <h1 class="col-12 text-center text-muted d-none d-sm-block d-md-none">SM</h1>
+      <h1 class="col-12 text-center text-muted d-none d-md-block d-lg-none">MD</h1>
+      <h1 class="col-12 text-center text-muted d-none d-lg-block d-xl-none">LG</h1>
+      <h1 class="col-12 text-center text-muted d-none d-xl-block">XL</h1>
+    </div>
+
+  </div>
+</div>

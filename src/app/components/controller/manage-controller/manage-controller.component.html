@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-12">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <app-manage-controller-name-input [isEdit]="false" (addControl)="saveControl($event.form)"></app-manage-controller-name-input>
+      </li>
+    </ul>
+    <ul class="list-group mt-2" *ngIf="controls$ | async as forms">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let form of forms">
+
+        <ng-container *ngIf="controlToEdit == form.id">
+          <app-manage-controller-name-input (updateControl)="updateControl($event.id, $event.form)"
+                                            [isEdit]="true"
+                                            class="d-block w-100"
+                                            [(controlToEdit)]="controlToEdit"
+                                            [control]="form"></app-manage-controller-name-input>
+        </ng-container>
+
+        <ng-container *ngIf="controlToEdit != form.id">
+          <label class="mt-2 font-weight-bold text-muted">{{form.name}}</label>
+          <div>
+            <button class="btn btn-info btn-sm mr-2"
+                    (click)="controlToOpen = ((controlToOpen == form.id) ? '' : form.id)"
+                    type="button">
+              <i class="fa" [class.fa-folder-open]="controlToOpen == form.id" [class.fa-folder]="controlToOpen != form.id"></i>
+            </button>
+            <button class="btn-warning btn mr-2 btn-sm"
+                    (click)="controlToEdit = form.id">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn-danger btn btn-sm"
+                    (click)="deleteControl(form.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>

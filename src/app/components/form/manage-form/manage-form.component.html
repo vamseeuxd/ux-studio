@@ -1,0 +1,47 @@
+<div class="row mt-3">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <app-manage-form-name-input [isEdit]="false" (addForm)="saveForm($event.form)"></app-manage-form-name-input>
+      </li>
+    </ul>
+    <ul class="list-group mt-2" *ngIf="forms$ | async as forms">
+      <li class="list-group-item" *ngFor="let form of forms">
+
+        <ng-container *ngIf="formToEdit == form.id">
+          <app-manage-form-name-input (updateForm)="updateForm($event.id, $event.form)"
+                                      [isEdit]="true"
+                                      class="d-block w-100"
+                                      [(formToEdit)]="formToEdit"
+                                      [form]="form"></app-manage-form-name-input>
+        </ng-container>
+
+        <ng-container *ngIf="formToEdit != form.id">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center mb-2">
+              <label class="mt-2 font-weight-bold text-muted">{{form.name}}</label>
+              <div>
+                <button class="btn btn-info btn-sm mr-2"
+                        (click)="formToOpen = ((formToOpen == form.id) ? '' : form.id)"
+                        type="button">
+                  <i class="fa" [class.fa-folder-open]="formToOpen == form.id" [class.fa-folder]="formToOpen != form.id"></i>
+                </button>
+                <button class="btn-warning btn mr-2 btn-sm"
+                        (click)="formToEdit = form.id">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn-danger btn btn-sm"
+                        (click)="deleteForm(form.id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-12 px-0 bg-light" *ngIf="formToOpen == form.id">
+              <app-manage-controller [formId]="form.id" class="d-block border pt-5 p-3"></app-manage-controller>
+            </div>
+          </div>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>

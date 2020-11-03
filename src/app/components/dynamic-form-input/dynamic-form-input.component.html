@@ -1,0 +1,117 @@
+<label>
+  {{config.label}}
+  <span class="text-danger" *ngIf="config?.required">*</span>
+  <!-- {{value}}  -->
+</label>
+
+
+<ng-container [ngSwitch]="true">
+
+  <ng-container
+    *ngSwitchCase="config.type == CONTROL_TYPE_ENUM.EMAIL || config.type == CONTROL_TYPE_ENUM.URL || config.type == CONTROL_TYPE_ENUM.TEXT || config.type == CONTROL_TYPE_ENUM.TEL || config.type == CONTROL_TYPE_ENUM.PASSWORD">
+    <input [type]="config.type"
+           [attr.minlength]="config?.min"
+           [attr.maxlength]="config?.max"
+           [defaultValue]="config?.defaultValue"
+           [placeholder]="config?.placeholder"
+           [(ngModel)]="value"
+           [disabled]="config.disabled"
+           (input)="onChange($event)"
+           [class.is-valid]="!isValid().messsage"
+           [class.is-invalid]="isValid().messsage"
+           class="form-control">
+    <small *ngIf="config.help && !isValid().messsage" class="form-text text-muted">
+      {{config.help}}
+    </small>
+    <small *ngIf="isValid().messsage" class="form-text text-danger">
+      {{isValid().messsage}}
+    </small>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="config.type == CONTROL_TYPE_ENUM.FILE">
+    <input [type]="config.type"
+           [accept]="config.accept"
+           [multiple]="config.multiple"
+           [required]="config.required"
+           (change)="onFileChange($event)"
+           [disabled]="config.disabled"
+           [class.is-valid]="!isValid().messsage"
+           [class.is-invalid]="isValid().messsage"
+           class="form-control-file">
+    <small *ngIf="config.help && !isValid().messsage" class="form-text text-muted">
+      {{config.help}}
+    </small>
+    <small *ngIf="isValid().messsage" class="form-text text-danger">
+      {{isValid().messsage}}
+    </small>
+  </ng-container>
+
+  <ng-container
+    *ngSwitchCase="config.type == CONTROL_TYPE_ENUM.COLOR || config.type == CONTROL_TYPE_ENUM.RANGE || config.type == CONTROL_TYPE_ENUM.NUMBER || config.type == CONTROL_TYPE_ENUM.DATE || config.type == CONTROL_TYPE_ENUM.DATE_TIME || config.type == CONTROL_TYPE_ENUM.WEEK || config.type == CONTROL_TYPE_ENUM.MONTH || config.type == CONTROL_TYPE_ENUM.TIME">
+    <input [type]="config.type"
+           [attr.min]="config?.min"
+           [attr.max]="config?.max"
+           [placeholder]="config?.placeholder"
+           [defaultValue]="config?.defaultValue"
+           [(ngModel)]="value"
+           [disabled]="config.disabled"
+           (input)="onChange($event)"
+           [class.is-valid]="!isValid().messsage"
+           [class.is-invalid]="isValid().messsage"
+           [class.custom-range]="config.type == CONTROL_TYPE_ENUM.RANGE"
+           [class.form-control]="config.type != 'range'">
+    <small *ngIf="config.help && !isValid().messsage" class="form-text text-muted">
+      {{config.help}}
+    </small>
+    <small *ngIf="isValid().messsage" class="form-text text-danger">
+      {{isValid().messsage}}
+    </small>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="config.type == CONTROL_TYPE_ENUM.SELECT">
+    <select class="custom-select"
+            [class.is-valid]="!isValid().messsage"
+            [class.is-invalid]="isValid().messsage"
+            [(ngModel)]="value"
+            [disabled]="config.disabled"
+            (ngModelChange)="onChange(value)">
+      <option *ngFor="let option of config.dataProvider"
+              [ngValue]="option[config.idField]">
+        {{option[config.labelFiled]}}
+      </option>
+
+    </select>
+    <small *ngIf="config.help && !isValid().messsage" class="form-text text-muted">
+      {{config.help}}
+    </small>
+    <small *ngIf="isValid().messsage" class="form-text text-danger">
+      {{isValid().messsage}}
+    </small>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="config.type == CONTROL_TYPE_ENUM.RADIO || config.type == CONTROL_TYPE_ENUM.CHECK_BOX">
+    <div class="pl-3">
+      <div class="form-check form-check-inline mr-3" *ngFor="let option of config.dataProvider">
+        <input (input)="updateCheckBoxSelection($event)"
+               [class.is-valid]="!isValid().messsage"
+               [class.is-invalid]="isValid().messsage"
+               class="form-check-input"
+               [type]="config.type"
+               [disabled]="config.disabled"
+               [id]="config.id+'_'+option[config.idField]"
+               [value]="option[config.idField]"
+               [checked]="value && value.indexOf(option[config.idField]) >= 0">
+        <label class="form-check-label" [for]="config.id+'_'+option[config.idField]">
+          {{option[config.labelFiled]}}
+        </label>
+      </div>
+    </div>
+    <small *ngIf="config.help && !isValid().messsage" class="form-text text-muted">
+      {{config.help}}
+    </small>
+    <small *ngIf="isValid().messsage" class="form-text text-danger">
+      {{isValid().messsage}}
+    </small>
+  </ng-container>
+
+</ng-container>

@@ -1,0 +1,74 @@
+<div cdkDropListGroup>
+  <div class="list-group-container">
+    <!--<h4>To do</h4>-->
+
+    <ul
+      cdkDropList
+      [cdkDropListEnterPredicate]="stopDropPredicate"
+      [cdkDropListData]="controlsList"
+      class="list-group"
+      (cdkDropListDropped)="drop2($event)">
+      <li class="list-group-item" *ngFor="let item of controlsList" cdkDrag>{{item.label}}</li>
+    </ul>
+  </div>
+
+  <div class="list-group-container">
+    <!--<h4>Done</h4>-->
+    <ul
+      cdkDropList
+      [cdkDropListData]="selectedControlsList"
+      class="list-group"
+      [class.border]="selectedControlsList.length == 0"
+      (cdkDropListDropped)="drop($event)">
+      <p *ngIf="selectedControlsList.length == 0" class="text-muted text-center pt-3">No Items to show...</p>
+      <li class="list-group-item" *ngFor="let item of selectedControlsList; let $index=index" cdkDrag>
+        <div class="w-100">
+          <div class="col-12 px-0">
+            <div>
+              {{item.label}}
+              <div class="float-right">
+                <button [disabled]="itemToEdit != ''" *ngIf="itemToEdit != item.id" (click)="deleteControl(selectedControlsList,$index)" class="btn mr-3 btn-danger btn-sm"><i class="fa fa-trash"> </i></button>
+                <button [disabled]="itemToEdit != ''" *ngIf="itemToEdit != item.id" (click)="itemToEdit = item.id" class="btn btn-warning btn-sm"><i class="fa fa-edit"> </i></button>
+                <button *ngIf="itemToEdit == item.id" (click)="itemToEdit = ''" class="btn btn-dark btn-sm"><i class="fa fa-close"> </i></button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <form #sampleForm="ngForm" class="col-12 px-0 pt-3 border-top mt-3" *ngIf="itemToEdit == item.id">
+            <dynamic-form-input [defaultValue]="item.label" ngModel name="label"                [type]="CONTROL_TYPE_ENUM.TEXT" label="Label" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.placeholder" ngModel name="placeholder"          [type]="CONTROL_TYPE_ENUM.TEXT" label="Place Holder" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.id" ngModel name="id"                   [type]="CONTROL_TYPE_ENUM.TEXT" label="Id" help=""></dynamic-form-input>
+            <dynamic-form-input  [defaultValue]="item.type" ngModel name="type"                 [type]="CONTROL_TYPE_ENUM.TEXT" label="Type" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.help" ngModel name="help"                 [type]="CONTROL_TYPE_ENUM.TEXT" label="Help" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.width" ngModel name="width"                [type]="CONTROL_TYPE_ENUM.TEXT" label="Width" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.offset" ngModel name="offset"               [type]="CONTROL_TYPE_ENUM.TEXT" label="Offset" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.min" ngModel name="min"                  [type]="CONTROL_TYPE_ENUM.TEXT" label="Min" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.max" ngModel name="max"                  [type]="CONTROL_TYPE_ENUM.TEXT" label="Max" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.required ? 'yes' : 'no'" ngModel name="required"             [type]="CONTROL_TYPE_ENUM.RADIO" [dataProvider]="[{ id: 'yes', label: 'Yes' }, { id: 'no', label: 'No' }]" label="Required" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.minErrorMessage" ngModel name="minErrorMessage"      [type]="CONTROL_TYPE_ENUM.TEXT" label="Min Error Message" help=""></dynamic-form-input>
+            <dynamic-form-input [defaultValue]="item.maxErrorMessage" ngModel name="requiredErrorMessage" [type]="CONTROL_TYPE_ENUM.TEXT" label="Required Error Message" help=""></dynamic-form-input>
+            <!--<pre>{{item|json}}</pre>-->
+            <!--
+            {
+              "label": "TEXT Control",
+              "placeholder": "Provide valid User Name",
+              "id": "1603806288138",
+              "type": "text",
+              "help": "Provide valid User Name in between 30 to 10 characters",
+              "width": "col-12",
+              "offset": "offset-0",
+              "defaultValue": "Vamsee Kalyan",
+              "min": 3,
+              "max": 30,
+              "required": true,
+              "minErrorMessage": "User Name required 3 number",
+              "requiredErrorMessage": "User Name is required"
+            }
+            -->
+            <pre>{{sampleForm.value | json}}</pre>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

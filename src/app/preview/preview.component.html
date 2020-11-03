@@ -1,0 +1,55 @@
+<app-virtual-page (contextmenu)="onContextMenu($event, 'Hi')"></app-virtual-page>
+<mat-menu #contextMenu="matMenu">
+  <ng-template matMenuContent let-item="item">
+    <button mat-menu-item [matMenuTriggerFor]="componentsList"><i class="fa fa-sign-out mr-2"></i>Add Component After</button>
+    <button mat-menu-item [matMenuTriggerFor]="componentsList"><i class="fa fa-sign-in mr-2"></i>Add Component Before</button>
+    <button mat-menu-item [matMenuTriggerFor]="componentsList"><i class="fa fa-download mr-2"></i>Add Component as Child</button>
+    <button mat-menu-item [matMenuTriggerFor]="manageUtilities"><i class="fa fa-sliders mr-2"></i>Utilities</button>
+    <button mat-menu-item><i class="fa fa-clone mr-2"></i>Copy Component</button>
+    <button mat-menu-item><i class="fa fa-cut mr-2"></i>Cut Component</button>
+    <button mat-menu-item><i class="fa fa-edit mr-2"></i>Edit Component</button>
+    <button mat-menu-item><i class="fa fa-trash mr-2"></i>Delete Component</button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #componentsList="matMenu">
+  <button mat-menu-item>Alerts</button>
+  <button mat-menu-item>Badge</button>
+  <button mat-menu-item>Breadcrumb</button>
+  <button mat-menu-item>Buttons</button>
+  <button mat-menu-item>Button group</button>
+  <button mat-menu-item>Card</button>
+  <button mat-menu-item>Carousel</button>
+  <button mat-menu-item>Collapse</button>
+  <button mat-menu-item>Dropdowns</button>
+  <button mat-menu-item>Forms</button>
+  <button mat-menu-item>Input group</button>
+  <button mat-menu-item>Jumbotron</button>
+  <button mat-menu-item>List group</button>
+  <button mat-menu-item>Media object</button>
+  <button mat-menu-item>Modal</button>
+  <button mat-menu-item>Navs</button>
+  <button mat-menu-item>Navbar</button>
+  <button mat-menu-item>Pagination</button>
+  <button mat-menu-item>Popovers</button>
+  <button mat-menu-item>Progress</button>
+  <button mat-menu-item>Scrollspy</button>
+  <button mat-menu-item>Spinners</button>
+  <button mat-menu-item>Toasts</button>
+  <button mat-menu-item>Tooltips</button>
+</mat-menu>
+
+<mat-menu #manageUtilities="matMenu">
+  <button mat-menu-item><i class="fa fa-indent mr-2"></i>Padding</button>
+  <button mat-menu-item><i class="fa fa-outdent mr-2"></i>Margin</button>
+  <button mat-menu-item><i class="fa fa-align-left mr-2"></i>Column</button>
+  <button mat-menu-item><i class="fa fa-align-right mr-2"></i>Offset</button>
+  <button mat-menu-item><i class="fa fa-file-text mr-2"></i>Text</button>
+  <button mat-menu-item><i class="fa fa-th mr-2"></i>Colors</button>
+</mat-menu>
+
+<div style="visibility: hidden; position: fixed"
+     [style.left]="contextMenuPosition.x"
+     [style.top]="contextMenuPosition.y"
+     [matMenuTriggerFor]="contextMenu">
+</div>
