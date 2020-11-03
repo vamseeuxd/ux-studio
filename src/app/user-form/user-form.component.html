@@ -1,0 +1,24 @@
+<form #userDetails="ngForm" class="col-6">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Email</label>
+      <input type="email" required ngModel name="email" class="form-control">
+    </div>
+
+    <div class="form-group col-md-12">
+      <label>First Name</label>
+      <input type="text" required ngModel name="firstName" class="form-control">
+    </div>
+
+    <div class="form-group col-md-12">
+      <label>Last Name</label>
+      <input type="text" required ngModel name="lastName" class="form-control">
+    </div>
+
+  </div>
+  <button type="button" (click)="saveData(userDetails)" [disabled]="userDetails.invalid" class="btn btn-primary">Save</button>
+    
+</form>
+<div *ngIf="showLoader" class="busy-indicator">
+  Please wait...
+</div>

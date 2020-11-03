@@ -1,0 +1,6 @@
+<ul class="list-group" *ngIf="users|async as users">
+    <li class="list-group-item" *ngFor="let user of users">
+        <h6>{{user.firstName}} {{user.lastName}}</h6>
+        <h6>{{user.email}}</h6>
+    </li>
+</ul>

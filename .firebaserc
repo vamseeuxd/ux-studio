@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "vamsee-training": {
+      "hosting": {
+        "ng-firbase-app": [
+          "vamsee-training"
+        ]
+      }
+    }
+  }
+}
