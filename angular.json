@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "ng-firbase-app"
+  "defaultProject": "ng-firbase-app",
+  "cli": {
+    "analytics": "afa2a1b2-8ce5-4d42-af42-40b8d887602e"
+  }
 }

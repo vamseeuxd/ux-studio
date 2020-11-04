@@ -12,6 +12,17 @@ export enum COMPONENT_TYPE {
   TAB_SET = 'tab_set',
   PAGINATION = 'pagination',
   CARD = 'card',
+  POPOVER= 'popover',
+  RATING= 'rating',
+  SORTTABLE= 'sorttable',
+  TIMEPICKER= 'timepicker',
+  TOOLTIP= 'tooltip',
+  TYPEAHEAD= 'typeahead',
+  MODAL= 'modal',
+  DROPDOWN= 'dropdown',
+  DATEPICKER= 'datepicker',
+  BUTTON='button',
+  
 }
 
 export enum GRID_SIZE {
@@ -129,6 +140,65 @@ export class VirtualPageComponent {
     );
   }
 
+  addpopover() {
+    this.components.push(
+      {type: COMPONENT_TYPE.POPOVER, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+
+  addrating() {
+    this.components.push(
+      {type: COMPONENT_TYPE.RATING, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+  addsorttable() {
+    this.components.push(
+      {type: COMPONENT_TYPE.SORTTABLE, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+
+  addtimepicker() {
+    this.components.push(
+      {type: COMPONENT_TYPE.TIMEPICKER, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+
+  addtooltip() {
+    this.components.push(
+      {type: COMPONENT_TYPE.TOOLTIP, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+
+  
+  addtypeahead() {
+    this.components.push(
+      {type: COMPONENT_TYPE.TYPEAHEAD, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+
+ 
+  addmodal() {
+    this.components.push(
+      {type: COMPONENT_TYPE.MODAL, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+  adddropdown() {
+    this.components.push(
+      {type: COMPONENT_TYPE.DROPDOWN, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+
+  adddatepicker() {
+    this.components.push(
+      {type: COMPONENT_TYPE.DATEPICKER, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
+
+  addbutton() {
+    this.components.push(
+      {type: COMPONENT_TYPE.BUTTON, ...this.getLayout(), id: new Date().getTime().toString()}
+    );
+  }
   getLayout() {
     return {
       col_all: GRID_SIZE.TWELVE,

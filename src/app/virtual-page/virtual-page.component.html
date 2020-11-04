@@ -14,6 +14,16 @@
       <li role="menuitem"><a (click)="addTabSet()" class="dropdown-item">TAB_SET</a></li>
       <li role="menuitem"><a (click)="addPagination()" class="dropdown-item">PAGINATION</a></li>
       <li role="menuitem"><a (click)="addCard()" class="dropdown-item">CARD</a></li>
+      <li role="menuitem"><a (click)="addpopover()" class="dropdown-item">POPOVER</a></li>
+      <li role="menuitem"><a (click)="addrating()" class="dropdown-item">RATING</a></li>
+      <li role="menuitem"><a (click)="addsorttable()" class="dropdown-item">SORTTABLE</a></li>
+      <li role="menuitem"><a (click)="addtimepicker()" class="dropdown-item">TIMEPICKER</a></li> 
+      <li role="menuitem"><a (click)="addtooltip()" class="dropdown-item">TOOLTIP</a></li> 
+      <li role="menuitem"><a (click)="addtypeahead()" class="dropdown-item">TYPEAHEAD</a></li> 
+      <li role="menuitem"><a (click)="addmodal()" class="dropdown-item">MODAL</a></li> 
+      <li role="menuitem"><a (click)="adddropdown()" class="dropdown-item">DROPDOWN</a></li>  
+      <li role="menuitem"><a (click)="adddatepicker()" class="dropdown-item">DATEPICKER</a></li> 
+      <li role="menuitem"><a (click)="addbutton()" class="dropdown-item">BUTTON</a></li>  
 
     </ul>
   </div>
@@ -125,6 +135,185 @@
           </div>
         </app-responsive-column>
       </ng-container>
+
+
+      <ng-container *ngSwitchCase="component_type.POPOVER">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                   <button type="button" class="btn btn-default btn-secondary"
+                               popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                               popoverTitle="Popover on top"
+                               placement="top">
+                         Popover on top
+                       </button>
+        </app-responsive-column>
+      </ng-container>
+
+
+      
+      <ng-container *ngSwitchCase="component_type.RATING">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                              
+          <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating>
+<div class="card">
+    <pre class="card-block card-header" style="margin:15px 0;">Rate: <b>{{rate}}</b> </pre>
+</div>
+                   
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.SORTTABLE">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                  <div class="row">
+                  <div class="col-xs-6 col-6 col-md-5 col-lg-3">
+                     <bs-sortable
+                                    [(ngModel)]="itemObjectsLeft"
+                                    fieldName="name"
+                                    itemClass="sortable-item"
+                                    itemActiveClass="sortable-item-active"
+                                    placeholderItem="Drag here"
+                                    placeholderClass="placeholderStyle"
+                                    wrapperClass="sortable-wrapper"
+                                ></bs-sortable>
+                                  <pre class="code-preview">{{ itemObjectsLeft | json }}</pre>
+                                </div>
+                                <div class="col-xs-6 col-6 col-md-5 col-lg-3">
+                                  <bs-sortable
+                                    [(ngModel)]="itemObjectsRight"
+                                    fieldName="name"
+                                    itemClass="sortable-item"
+                                    itemActiveClass="sortable-item-active"
+                                    placeholderItem="Drag here"
+                                    placeholderClass="placeholderStyle"
+                                    wrapperClass="sortable-wrapper"
+                                  ></bs-sortable>
+                                  <pre class="code-preview">{{ itemObjectsRight | json }}</pre>
+                                </div>
+                              </div>                
+          
+                   
+        </app-responsive-column>
+      </ng-container>
+
+      
+      <ng-container *ngSwitchCase="component_type.TIMEPICKER">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                               <ng-container *ngIf="form">
+                                <form [formGroup]="form">
+                                  <timepicker [formControlName]="'myControl'"></timepicker>
+                                </form>
+                               
+                                <br>
+                                <button class="btn btn-succes" (click)="form.get('myControl').enable()">Enable Control</button>
+                                <button class="btn btn-warning" (click)="form.get('myControl').disable()">Disable Control</button>
+                                <br><br>
+                               
+                                <pre class="alert alert-info">Time is: {{ form.get('myControl').value }}</pre>
+                              </ng-container>
+                              
+          
+                   
+        </app-responsive-column>
+      </ng-container>
+      
+      <ng-container *ngSwitchCase="component_type.TOOLTIP">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                              
+               <button type="button" class="btn btn-primary"  tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                         Simple demo
+                       </button>
+                   
+        </app-responsive-column>
+      </ng-container>
+      
+      <ng-container *ngSwitchCase="component_type.TYPEAHEAD">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                               <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
+                               <input [(ngModel)]="selected"
+                                      [typeahead]="states"
+                                      [isAnimated]="true"
+                                      class="form-control">                    
+          
+                   
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.MODAL">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                               <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+ 
+                               <ng-template #template>
+                                 <div class="modal-header">
+                                   <h4 class="modal-title pull-left">Modal</h4>
+                                   <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                     <span aria-hidden="true">&times;</span>
+                                   </button>
+                                 </div>
+                                 <div class="modal-body">
+                                   This is a modal.
+                                 </div>
+                               </ng-template>                                   
+          
+                   
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.DROPDOWN">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                               <div class="btn-group" dropdown>
+                                <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                                        aria-controls="dropdown-basic">
+                                  Button dropdown <span class="caret"></span>
+                                </button>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                                    role="menu" aria-labelledby="button-basic">
+                                  <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+                                  <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+                                  <li class="divider dropdown-divider"></li>
+                                  <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+                                  </li>
+                                </ul>
+                              </div>                               
+          
+                   
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.DATEPICKER">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                               <div class="row">
+                                <div class="col-xs-12 col-12 col-md-4 form-group">
+                                  <input type="text"
+                                         placeholder="Datepicker"
+                                         class="form-control"
+                                         bsDatepicker>
+                                </div>
+                               </div>                            
+          
+                   
+        </app-responsive-column>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="component_type.BUTTON">
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+                               (deleteComponent)="deleteComponent($event)" [component]="component">
+                               <button type="button" class="btn btn-primary">
+                                Single Button
+                              </button>
+                              
+                              
+                              </app-responsive-column> 
+                              </ng-container>
+
 
     </ng-container>
 
