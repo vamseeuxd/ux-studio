@@ -44,6 +44,7 @@ import {TimepickerModule} from 'ngx-bootstrap/timepicker';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {TypeaheadModule} from 'ngx-bootstrap/typeahead';
 import { ResponsiveColumnComponent } from './responsive-column/responsive-column.component';
+import { LeftSlideNavComponent } from './left-slide-nav/left-slide-nav.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ResponsiveColumnComponent } from './responsive-column/responsive-column
     ContextMenuComponent,
     VirtualPageComponent,
     ResponsiveColumnComponent,
+    LeftSlideNavComponent,
 
   ],
   imports: [

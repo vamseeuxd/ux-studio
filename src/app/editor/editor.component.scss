@@ -117,9 +117,11 @@ $menuBarHeight: 36px;
     background-color: #535353;
     position: absolute;
     left: $mainPadding / 2;
-    top: $menuBarHeight + ($mainPadding / 2);
+    /*top: $menuBarHeight + ($mainPadding / 2);*/
+    top: ($mainPadding / 2);
     z-index: 1;
-    height: calc(100% - #{$menuBarHeight + $mainPadding});
+    /*height: calc(100% - #{$menuBarHeight + $mainPadding});*/
+    height: calc(100% - #{$menuBarHeight / 2});
 
     .design-space-inner {
       width: calc(100% - 6px);

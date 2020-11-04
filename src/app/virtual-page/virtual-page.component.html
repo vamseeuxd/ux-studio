@@ -1,4 +1,6 @@
 <div class="container-fluid pb-5">
+  <button class="btn btn-dark" (click)="leftSideMenu.open = true"><i class="fa fa-bars"></i></button>
+  <app-left-slide-nav #leftSideMenu></app-left-slide-nav>
   <div class="btn-group" dropdown class="add-component-drop-down" *ngIf="components.length==0">
     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
       Add Component <span class="caret"></span>
