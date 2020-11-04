@@ -1,7 +1,8 @@
 <div class="container-fluid pb-5">
-  <div class="btn-group" dropdown class="add-component-drop-down">
+  <div class="btn-group" dropdown class="add-component-drop-down" *ngIf="components.length==0">
     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
       Add Component <span class="caret"></span>
+      <!--<i class="fa fa-plus-circle"></i>-->
     </button>
     <ul *dropdownMenu class="dropdown-menu">
       <li role="menuitem"><a (click)="addAlertSuccess()" class="dropdown-item">ALERT_SUCCESS</a></li>
@@ -17,13 +18,13 @@
       <li role="menuitem"><a (click)="addpopover()" class="dropdown-item">POPOVER</a></li>
       <li role="menuitem"><a (click)="addrating()" class="dropdown-item">RATING</a></li>
       <li role="menuitem"><a (click)="addsorttable()" class="dropdown-item">SORTTABLE</a></li>
-      <li role="menuitem"><a (click)="addtimepicker()" class="dropdown-item">TIMEPICKER</a></li> 
-      <li role="menuitem"><a (click)="addtooltip()" class="dropdown-item">TOOLTIP</a></li> 
-      <li role="menuitem"><a (click)="addtypeahead()" class="dropdown-item">TYPEAHEAD</a></li> 
-      <li role="menuitem"><a (click)="addmodal()" class="dropdown-item">MODAL</a></li> 
-      <li role="menuitem"><a (click)="adddropdown()" class="dropdown-item">DROPDOWN</a></li>  
-      <li role="menuitem"><a (click)="adddatepicker()" class="dropdown-item">DATEPICKER</a></li> 
-      <li role="menuitem"><a (click)="addbutton()" class="dropdown-item">BUTTON</a></li>  
+      <li role="menuitem"><a (click)="addtimepicker()" class="dropdown-item">TIMEPICKER</a></li>
+      <li role="menuitem"><a (click)="addtooltip()" class="dropdown-item">TOOLTIP</a></li>
+      <li role="menuitem"><a (click)="addtypeahead()" class="dropdown-item">TYPEAHEAD</a></li>
+      <li role="menuitem"><a (click)="addmodal()" class="dropdown-item">MODAL</a></li>
+      <li role="menuitem"><a (click)="adddropdown()" class="dropdown-item">DROPDOWN</a></li>
+      <li role="menuitem"><a (click)="adddatepicker()" class="dropdown-item">DATEPICKER</a></li>
+      <li role="menuitem"><a (click)="addbutton()" class="dropdown-item">BUTTON</a></li>
 
     </ul>
   </div>
@@ -150,16 +151,16 @@
       </ng-container>
 
 
-      
+
       <ng-container *ngSwitchCase="component_type.RATING">
         <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
-                              
+
           <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating>
 <div class="card">
     <pre class="card-block card-header" style="margin:15px 0;">Rate: <b>{{rate}}</b> </pre>
 </div>
-                   
+
         </app-responsive-column>
       </ng-container>
 
@@ -191,13 +192,13 @@
                                   ></bs-sortable>
                                   <pre class="code-preview">{{ itemObjectsRight | json }}</pre>
                                 </div>
-                              </div>                
-          
-                   
+                              </div>
+
+
         </app-responsive-column>
       </ng-container>
 
-      
+
       <ng-container *ngSwitchCase="component_type.TIMEPICKER">
         <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
@@ -205,31 +206,31 @@
                                 <form [formGroup]="form">
                                   <timepicker [formControlName]="'myControl'"></timepicker>
                                 </form>
-                               
+
                                 <br>
                                 <button class="btn btn-succes" (click)="form.get('myControl').enable()">Enable Control</button>
                                 <button class="btn btn-warning" (click)="form.get('myControl').disable()">Disable Control</button>
                                 <br><br>
-                               
+
                                 <pre class="alert alert-info">Time is: {{ form.get('myControl').value }}</pre>
                               </ng-container>
-                              
-          
-                   
+
+
+
         </app-responsive-column>
       </ng-container>
-      
+
       <ng-container *ngSwitchCase="component_type.TOOLTIP">
         <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
-                              
+
                <button type="button" class="btn btn-primary"  tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                          Simple demo
                        </button>
-                   
+
         </app-responsive-column>
       </ng-container>
-      
+
       <ng-container *ngSwitchCase="component_type.TYPEAHEAD">
         <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
@@ -237,9 +238,9 @@
                                <input [(ngModel)]="selected"
                                       [typeahead]="states"
                                       [isAnimated]="true"
-                                      class="form-control">                    
-          
-                   
+                                      class="form-control">
+
+
         </app-responsive-column>
       </ng-container>
 
@@ -247,7 +248,7 @@
         <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                                <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
- 
+
                                <ng-template #template>
                                  <div class="modal-header">
                                    <h4 class="modal-title pull-left">Modal</h4>
@@ -258,9 +259,9 @@
                                  <div class="modal-body">
                                    This is a modal.
                                  </div>
-                               </ng-template>                                   
-          
-                   
+                               </ng-template>
+
+
         </app-responsive-column>
       </ng-container>
 
@@ -281,9 +282,9 @@
                                   <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
                                   </li>
                                 </ul>
-                              </div>                               
-          
-                   
+                              </div>
+
+
         </app-responsive-column>
       </ng-container>
 
@@ -297,9 +298,9 @@
                                          class="form-control"
                                          bsDatepicker>
                                 </div>
-                               </div>                            
-          
-                   
+                               </div>
+
+
         </app-responsive-column>
       </ng-container>
 
@@ -309,9 +310,9 @@
                                <button type="button" class="btn btn-primary">
                                 Single Button
                               </button>
-                              
-                              
-                              </app-responsive-column> 
+
+
+                              </app-responsive-column>
                               </ng-container>
 
 

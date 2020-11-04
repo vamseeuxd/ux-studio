@@ -1,9 +1,14 @@
 :host{
   .add-component-drop-down{
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: calc(50% - (38px / 2));
+    left: calc(50% - (161px / 2));
     z-index: 100000;
+    ::ng-deep
+    ul.dropdown-menu.ng-star-inserted.show {
+      max-height: 250px;
+      overflow-y: auto;
+    }
   }
 }
 
