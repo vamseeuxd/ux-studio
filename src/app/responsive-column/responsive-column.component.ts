@@ -1,5 +1,5 @@
 import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
-import {GRID_SIZE, IComponentConfig} from '../virtual-page/virtual-page.component';
+import {GRID_SIZE, IComponentConfig, HORIZONTAL_PADDING_SIZE} from '../virtual-page/virtual-page.component';
 import * as _ from "lodash";
 
 @Component({
@@ -29,6 +29,7 @@ export class ResponsiveColumnComponent implements OnInit {
   @HostBinding('class') className = '';
 
   readonly grid_size = GRID_SIZE;
+  readonly padding_size = HORIZONTAL_PADDING_SIZE;
   action: string;
   subAction: string;
   actionValue: string;
@@ -36,6 +37,8 @@ export class ResponsiveColumnComponent implements OnInit {
   xlValue: number;
   openWidth = false;
   openOffset = false;
+  openPadding = false;
+  openMargin = false;
 
   constructor() {
     console.log(this._component);
@@ -93,6 +96,54 @@ export class ResponsiveColumnComponent implements OnInit {
     this.className = this.className + ' ' + 'offset-xs-' + this.component.offset_xs;
   }
 
+  updateHorizontalPaddingAll() {
+    this.className = this.className + ' ' + 'px-' + this.component.horizontal_padding_all;
+  }
+
+  updateHorizontalPaddingXl() {
+    this.className = this.className + ' ' + 'px-xl-' + this.component.horizontal_padding_xl;
+  }
+
+  updateHorizontalPaddingLg() {
+    this.className = this.className + ' ' + 'px-lg-' + this.component.horizontal_padding_lg;
+  }
+
+  updateHorizontalPaddingMd() {
+    this.className = this.className + ' ' + 'px-md-' + this.component.horizontal_padding_md;
+  }
+
+  updateHorizontalPaddingSm() {
+    this.className = this.className + ' ' + 'px-sm-' + this.component.horizontal_padding_sm;
+  }
+
+  updateHorizontalPaddingXs() {
+    this.className = this.className + ' ' + 'px-xs-' + this.component.horizontal_padding_xs;
+  }
+
+  updateVerticalPaddingAll() {
+    this.className = this.className + ' ' + 'py-' + this.component.vertical_padding_all;
+  }
+
+  updateVerticalPaddingXl() {
+    this.className = this.className + ' ' + 'py-xl-' + this.component.vertical_padding_xl;
+  }
+
+  updateVerticalPaddingLg() {
+    this.className = this.className + ' ' + 'py-lg-' + this.component.vertical_padding_lg;
+  }
+
+  updateVerticalPaddingMd() {
+    this.className = this.className + ' ' + 'py-md-' + this.component.vertical_padding_md;
+  }
+
+  updateVerticalPaddingSm() {
+    this.className = this.className + ' ' + 'py-sm-' + this.component.vertical_padding_sm;
+  }
+
+  updateVerticalPaddingXs() {
+    this.className = this.className + ' ' + 'py-xs-' + this.component.vertical_padding_xs;
+  }
+
   changeColSize() {
     this.className = '';
     this.updateColAll();
@@ -107,6 +158,18 @@ export class ResponsiveColumnComponent implements OnInit {
     this.updateOffsetMd();
     this.updateOffsetSm();
     this.updateOffsetXs();
+    this.updateHorizontalPaddingAll();
+    this.updateHorizontalPaddingXl();
+    this.updateHorizontalPaddingLg();
+    this.updateHorizontalPaddingMd();
+    this.updateHorizontalPaddingSm();
+    this.updateHorizontalPaddingXs();
+    this.updateVerticalPaddingAll();
+    this.updateVerticalPaddingXl();
+    this.updateVerticalPaddingLg();
+    this.updateVerticalPaddingMd();
+    this.updateVerticalPaddingSm();
+    this.updateVerticalPaddingXs();
   }
 
   editWidth() {

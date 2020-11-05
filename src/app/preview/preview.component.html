@@ -1,4 +1,5 @@
-<app-virtual-page (contextmenu)="onContextMenu($event, 'Hi')"></app-virtual-page>
+<!--<app-virtual-page (contextmenu)="onContextMenu($event, 'Hi')"></app-virtual-page>-->
+<app-virtual-page></app-virtual-page>
 <mat-menu #contextMenu="matMenu">
   <ng-template matMenuContent let-item="item">
     <button mat-menu-item [matMenuTriggerFor]="componentsList"><i class="fa fa-sign-out mr-2"></i>Add Component After</button>

@@ -10,6 +10,16 @@
       overflow-y: auto;
     }
   }
+  .hamburger-menu{
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 100000000;
+    opacity: 0.3;
+    &:hover{
+      opacity: 1;
+    }
+  }
 }
 
 .device-resolution-mask {

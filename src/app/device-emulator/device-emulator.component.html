@@ -23,4 +23,4 @@
 </nav>-->
 
 <!--<app-virtual-page></app-virtual-page>-->
-<iframe src="http://localhost:4200/preview" class="w-100 h-100"></iframe>
+<iframe *ngIf="trustedUrl" [src]="trustedUrl" class="w-100 h-100"></iframe>

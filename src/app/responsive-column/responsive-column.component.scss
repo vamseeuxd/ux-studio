@@ -15,19 +15,58 @@
   }
 
   .components-list {
-    min-width: 100px;
+    min-width: 250px;
+    max-width: 250px;
     padding: 0;
-    min-height: 300px;
+    min-height: 100vh;
+    max-height: 100vh;
     background: #535353;
     border: 5px solid #424242;
     position: fixed;
-    top: calc(10vh);
-    left: calc(50vw - 200px);
+    top: 0;
+    right: -250px;
+    transition: 0.5s;
     z-index: 10000000000000;
+
+    .fa-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    &.show {
+      right: 0;
+    }
 
     .title {
       background-color: #424242;
-      padding: 10px 25px;
+      padding: 5px 25px;
+      font-size: 14px;
+    }
+
+    .list-group-item-label {
+      font-size: 12px;
+    }
+  }
+
+  ::ng-deep
+  .nav-tabs {
+    border-bottom: 1px solid #535353;
+
+    .nav-link {
+      background: #424242 !important;
+      color: #a9a9a9 !important;
+
+      &:hover {
+        color: #ffffff !important;
+        border-color: #424242 #424242 #424242;
+      }
+
+      &.active {
+        background: #535353 !important;
+        border: none !important;
+        color: #ffffff !important;
+      }
     }
   }
 }

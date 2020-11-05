@@ -12,20 +12,21 @@ export enum COMPONENT_TYPE {
   TAB_SET = 'tab_set',
   PAGINATION = 'pagination',
   CARD = 'card',
-  POPOVER= 'popover',
-  RATING= 'rating',
-  SORTTABLE= 'sorttable',
-  TIMEPICKER= 'timepicker',
-  TOOLTIP= 'tooltip',
-  TYPEAHEAD= 'typeahead',
-  MODAL= 'modal',
-  DROPDOWN= 'dropdown',
-  DATEPICKER= 'datepicker',
-  BUTTON='button',
-  
+  POPOVER = 'popover',
+  RATING = 'rating',
+  SORTTABLE = 'sorttable',
+  TIMEPICKER = 'timepicker',
+  TOOLTIP = 'tooltip',
+  TYPEAHEAD = 'typeahead',
+  MODAL = 'modal',
+  DROPDOWN = 'dropdown',
+  DATEPICKER = 'datepicker',
+  BUTTON = 'button',
+
 }
 
 export enum GRID_SIZE {
+  NONE = -1,
   ZERO = 0,
   ONE = 1,
   TWO = 2,
@@ -41,9 +42,31 @@ export enum GRID_SIZE {
   TWELVE = 12,
 }
 
+export enum HORIZONTAL_PADDING_SIZE {
+  NONE = -1,
+  ZERO = 0,
+  ONE = 1,
+  TWO = 2,
+  THREE = 3,
+  FOUR = 4,
+  FIVE = 5,
+}
+
 export interface IComponentConfig {
   id: string,
   type: COMPONENT_TYPE;
+  horizontal_padding_all: HORIZONTAL_PADDING_SIZE;
+  horizontal_padding_xs: HORIZONTAL_PADDING_SIZE;
+  horizontal_padding_sm: HORIZONTAL_PADDING_SIZE;
+  horizontal_padding_md: HORIZONTAL_PADDING_SIZE;
+  horizontal_padding_lg: HORIZONTAL_PADDING_SIZE;
+  horizontal_padding_xl: HORIZONTAL_PADDING_SIZE;
+  vertical_padding_all: HORIZONTAL_PADDING_SIZE;
+  vertical_padding_xs: HORIZONTAL_PADDING_SIZE;
+  vertical_padding_sm: HORIZONTAL_PADDING_SIZE;
+  vertical_padding_md: HORIZONTAL_PADDING_SIZE;
+  vertical_padding_lg: HORIZONTAL_PADDING_SIZE;
+  vertical_padding_xl: HORIZONTAL_PADDING_SIZE;
   col_all: GRID_SIZE;
   col_xs: GRID_SIZE;
   col_sm: GRID_SIZE;
@@ -71,6 +94,12 @@ export class VirtualPageComponent {
   components: IComponentConfig[] = [];
 
   editComponentId: string;
+
+  constructor() {
+    this.addAlertDanger();
+    setTimeout(() => this.addAlertSuccess());
+
+  }
 
   deleteComponent(component: IComponentConfig) {
     const isConfirm = confirm('Are you sure! Do you want to delete the component?')
@@ -151,6 +180,7 @@ export class VirtualPageComponent {
       {type: COMPONENT_TYPE.RATING, ...this.getLayout(), id: new Date().getTime().toString()}
     );
   }
+
   addsorttable() {
     this.components.push(
       {type: COMPONENT_TYPE.SORTTABLE, ...this.getLayout(), id: new Date().getTime().toString()}
@@ -169,19 +199,20 @@ export class VirtualPageComponent {
     );
   }
 
-  
+
   addtypeahead() {
     this.components.push(
       {type: COMPONENT_TYPE.TYPEAHEAD, ...this.getLayout(), id: new Date().getTime().toString()}
     );
   }
 
- 
+
   addmodal() {
     this.components.push(
       {type: COMPONENT_TYPE.MODAL, ...this.getLayout(), id: new Date().getTime().toString()}
     );
   }
+
   adddropdown() {
     this.components.push(
       {type: COMPONENT_TYPE.DROPDOWN, ...this.getLayout(), id: new Date().getTime().toString()}
@@ -199,25 +230,39 @@ export class VirtualPageComponent {
       {type: COMPONENT_TYPE.BUTTON, ...this.getLayout(), id: new Date().getTime().toString()}
     );
   }
+
   getLayout() {
     return {
-      col_all: GRID_SIZE.TWELVE,
+      col_all: GRID_SIZE.SIX,
       col_xl: GRID_SIZE.ZERO,
       col_lg: GRID_SIZE.ZERO,
       col_md: GRID_SIZE.ZERO,
       col_sm: GRID_SIZE.ZERO,
       col_xs: GRID_SIZE.ZERO,
-      offset_all: GRID_SIZE.ZERO,
-      offset_xl: GRID_SIZE.ZERO,
-      offset_lg: GRID_SIZE.ZERO,
-      offset_md: GRID_SIZE.ZERO,
-      offset_sm: GRID_SIZE.ZERO,
-      offset_xs: GRID_SIZE.ZERO
+      offset_all: GRID_SIZE.NONE,
+      offset_xl: GRID_SIZE.NONE,
+      offset_lg: GRID_SIZE.NONE,
+      offset_md: GRID_SIZE.NONE,
+      offset_sm: GRID_SIZE.NONE,
+      offset_xs: GRID_SIZE.NONE,
+      horizontal_padding_all: HORIZONTAL_PADDING_SIZE.NONE,
+      horizontal_padding_xl: HORIZONTAL_PADDING_SIZE.NONE,
+      horizontal_padding_lg: HORIZONTAL_PADDING_SIZE.NONE,
+      horizontal_padding_md: HORIZONTAL_PADDING_SIZE.NONE,
+      horizontal_padding_sm: HORIZONTAL_PADDING_SIZE.NONE,
+      horizontal_padding_xs: HORIZONTAL_PADDING_SIZE.NONE,
+      vertical_padding_all: HORIZONTAL_PADDING_SIZE.NONE,
+      vertical_padding_xs: HORIZONTAL_PADDING_SIZE.NONE,
+      vertical_padding_sm: HORIZONTAL_PADDING_SIZE.NONE,
+      vertical_padding_md: HORIZONTAL_PADDING_SIZE.NONE,
+      vertical_padding_lg: HORIZONTAL_PADDING_SIZE.NONE,
+      vertical_padding_xl: HORIZONTAL_PADDING_SIZE.NONE,
+
     }
   }
 
   editComponent(editComponentId: string) {
-    this.editComponentId = editComponentId;
+    this.editComponentId = this.editComponentId == editComponentId ? '' : editComponentId;
   }
 
   cloneComponent($event: IComponentConfig) {
