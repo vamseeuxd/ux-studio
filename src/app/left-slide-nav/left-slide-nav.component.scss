@@ -5,20 +5,9 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #111; /* Black*/
+  background-color: #424242;
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -30,10 +19,13 @@
 .sidenav .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
+  right: 10px;
   font-size: 20px;
-  margin-left: 25px;
   cursor: pointer;
+  z-index: 100000;
+  .fa{
+    color: white;
+  }
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -49,5 +41,17 @@
   }
   .sidenav a {
     font-size: 18px;
+  }
+}
+
+
+.components-list {
+  min-width: 100px;
+  padding: 0;
+  background: #535353;
+  border: 5px solid #424242;
+  .title {
+    background-color: #424242;
+    padding: 10px 25px;
   }
 }

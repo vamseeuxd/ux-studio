@@ -2,8 +2,20 @@
   <a class="closebtn" (click)="open = false">
     <i class="fa fa-close"></i>
   </a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+
+  <div class="components-list">
+    <h6 class="text-white m-0 title">Application Menu</h6>
+    <ul *ngFor="let menu of data" class="list-group bg-transparent text-white">
+      <li class="list-group-item bg-transparent">
+        <a class="mb-2 d-block" style="cursor: pointer" (click)="menu.open = !menu.open">
+          <i [class.fa-folder-open-o]="menu.open" [class.fa-folder-o]="!menu.open" class="fa"></i>
+          {{menu.label}}
+          <div class="clearfix"></div>
+        </a>
+        <ul *ngIf="menu.open" class="list-group bg-transparent text-white">
+          <li class="list-group-item bg-transparent"  *ngFor="let i of menu.subMenu">{{i.label}} </li>
+       </ul>
+      </li>
+    </ul>
+  </div>
 </div>
