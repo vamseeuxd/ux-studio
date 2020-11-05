@@ -47,6 +47,15 @@
     .list-group-item-label {
       font-size: 12px;
     }
+
+    .property-list-item {
+      .form-control {
+        border-radius: 0px;
+        background-color: #535353;
+        border: 1px solid #424242;
+        color: white;
+      }
+    }
   }
 
   ::ng-deep

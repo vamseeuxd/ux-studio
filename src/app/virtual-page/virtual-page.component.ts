@@ -52,6 +52,26 @@ export enum HORIZONTAL_PADDING_SIZE {
   FIVE = 5,
 }
 
+export enum PROPERTY_TYPE {
+  TEXT = 0,
+  NUMBER = 1,
+  DROPDOWN = 3,
+}
+
+export interface IPropertyDropDownOption {
+  id: string;
+  label: string;
+  value: string | number | boolean;
+}
+
+export interface IProperty {
+  id: string;
+  name: string;
+  value: string | number | boolean;
+  type: PROPERTY_TYPE;
+  dropDownOption?: IPropertyDropDownOption[];
+}
+
 export interface IComponentConfig {
   id: string,
   type: COMPONENT_TYPE;
@@ -79,6 +99,7 @@ export interface IComponentConfig {
   offset_md: GRID_SIZE;
   offset_lg: GRID_SIZE;
   offset_xl: GRID_SIZE;
+  properties?: IProperty[];
 }
 
 
@@ -109,9 +130,36 @@ export class VirtualPageComponent {
     }
   }
 
+  getPropValueById(props: IProperty[], propId: string): string | number | boolean {
+    const targetedProp = props.find(d => d.id == propId);
+    if (targetedProp) {
+      return targetedProp.value;
+    }
+    return '';
+  }
+
   addAlertSuccess() {
     this.components.push(
-      {type: COMPONENT_TYPE.ALERT_SUCCESS, ...this.getLayout(), id: new Date().getTime().toString()}
+      {
+        type: COMPONENT_TYPE.ALERT_SUCCESS, ...this.getLayout(), id: new Date().getTime().toString(),
+        properties: [
+          {name: 'Title', value: 'Vamsee Kalyan', type: PROPERTY_TYPE.TEXT, id: 'title'},
+          {
+            name: 'Message',
+            value: 'He is a Softeware expert and Arc',
+            type: PROPERTY_TYPE.TEXT,
+            id: 'message'
+          },
+          {
+            name: 'Alert Type', value: 'success', type: PROPERTY_TYPE.DROPDOWN, id: 'type',
+            dropDownOption: [
+              {id: 'success', label: 'Success Alert', value: 'success'},
+              {id: 'danger', label: 'Danger Alert', value: 'danger'},
+              {id: 'info', label: 'Info Alert', value: 'info'},
+            ]
+          },
+        ]
+      }
     );
   }
 

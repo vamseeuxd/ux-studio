@@ -1,5 +1,10 @@
 import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
-import {GRID_SIZE, IComponentConfig, HORIZONTAL_PADDING_SIZE} from '../virtual-page/virtual-page.component';
+import {
+  GRID_SIZE,
+  IComponentConfig,
+  HORIZONTAL_PADDING_SIZE,
+  PROPERTY_TYPE
+} from '../virtual-page/virtual-page.component';
 import * as _ from "lodash";
 
 @Component({
@@ -30,6 +35,7 @@ export class ResponsiveColumnComponent implements OnInit {
 
   readonly grid_size = GRID_SIZE;
   readonly padding_size = HORIZONTAL_PADDING_SIZE;
+  readonly property_type = PROPERTY_TYPE;
   action: string;
   subAction: string;
   actionValue: string;

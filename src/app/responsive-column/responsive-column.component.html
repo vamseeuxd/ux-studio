@@ -4,31 +4,40 @@
 </button>-->
 
 <div class="action-buttons">
-  <button type="button" tooltip="Edit"  placement="bottom" class="btn btn-warning btn-sm mr-1" (click)="editComponent.emit(component.id)">
+  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-warning btn-sm mr-1"
+          (click)="editComponent.emit(component.id)">
     <i class="fa fa-edit"></i>
   </button>
-  <button type="button" tooltip="Delete"  placement="bottom" class="btn btn-danger btn-sm mr-1" (click)="deleteComponent.emit(component);">
+  <button type="button" tooltip="Delete" placement="bottom" class="btn btn-danger btn-sm mr-1"
+          (click)="deleteComponent.emit(component);">
     <i class="fa fa-trash"></i>
   </button>
-  <button type="button" tooltip="Paste"  placement="bottom" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+  <button type="button" tooltip="Paste" placement="bottom" class="btn btn-info btn-sm mr-1"
+          (click)="cloneComponent.emit(component);">
     <i class="fa fa-clone"></i>
   </button>
-  <button type="button" tooltip="Edit"  placement="bottom" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
+          (click)="cloneComponent.emit(component);">
     <i class="fa fa-clone"></i>
   </button>
-  <button type="button" tooltip="Edit"  placement="bottom" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
+          (click)="cloneComponent.emit(component);">
     <i class="fa fa-clone"></i>
   </button>
-  <button type="button" tooltip="Edit"  placement="bottom" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
+          (click)="cloneComponent.emit(component);">
     <i class="fa fa-clone"></i>
   </button>
-  <button type="button" tooltip="Edit"  placement="bottom" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
+          (click)="cloneComponent.emit(component);">
     <i class="fa fa-clone"></i>
   </button>
-  <button type="button" tooltip="Edit"  placement="bottom" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
+          (click)="cloneComponent.emit(component);">
     <i class="fa fa-clone"></i>
   </button>
-  <button type="button" tooltip="Edit"  placement="bottom" class="btn btn-info btn-sm mr-1" (click)="cloneComponent.emit(component);">
+  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
+          (click)="cloneComponent.emit(component);">
     <i class="fa fa-clone"></i>
   </button>
 </div>
@@ -43,114 +52,185 @@
         <li class="pl-2 pr-2 list-group-item bg-transparent">
           <a (click)="openWidth=!openWidth" style="cursor: pointer">
             <i class="fa fa-sign-out mr-2 mb-2 ml-2"></i>Width
-            <i [class.fa-folder-open-o]="openWidth" [tooltip]="openWidth ? 'Close' : 'Open'" [class.fa-folder-o]="!openWidth" class="fa float-right"></i>
+            <i [class.fa-folder-open-o]="openWidth" [tooltip]="openWidth ? 'Close' : 'Open'"
+               [class.fa-folder-o]="!openWidth" class="fa float-right"></i>
             <div class="clearfix"></div>
           </a>
           <ul class="list-group bg-transparent text-white" *ngIf="openWidth">
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">All : {{component.col_all==grid_size.ZERO ? '' : component.col_all}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_all" type="range" min="0" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">All
+                : {{component.col_all == grid_size.ZERO ? '' : component.col_all}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_all" type="range" min="0"
+                     max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XL : {{component.col_xl==grid_size.ZERO ? '' : component.col_xl}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_xl" type="range" min="0" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">XL
+                : {{component.col_xl == grid_size.ZERO ? '' : component.col_xl}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_xl" type="range" min="0"
+                     max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">LG :  {{component.col_lg==grid_size.ZERO ? '' : component.col_lg}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_lg" type="range" min="0" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">LG
+                :  {{component.col_lg == grid_size.ZERO ? '' : component.col_lg}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_lg" type="range" min="0"
+                     max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">MD :  {{component.col_md==grid_size.ZERO ? '' : component.col_md}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_md" type="range" min="0" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">MD
+                :  {{component.col_md == grid_size.ZERO ? '' : component.col_md}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_md" type="range" min="0"
+                     max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">SM :  {{component.col_sm==grid_size.ZERO ? '' : component.col_sm}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_sm" type="range" min="0" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">SM
+                :  {{component.col_sm == grid_size.ZERO ? '' : component.col_sm}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_sm" type="range" min="0"
+                     max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XS :  {{component.col_xs==grid_size.ZERO ? '' : component.col_xs}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_xs" type="range" min="0" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">XS
+                :  {{component.col_xs == grid_size.ZERO ? '' : component.col_xs}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.col_xs" type="range" min="0"
+                     max="12"></li>
           </ul>
         </li>
         <li class="pl-1 pr-1 list-group-item bg-transparent">
           <a (click)="openOffset=!openOffset" style="cursor: pointer">
             <i class="fa fa-sign-in mr-2 mb-2 ml-2"></i>Offset
-            <i [class.fa-folder-open-o]="openOffset" [tooltip]="openOffset ? 'Close' : 'Open'" [class.fa-folder-o]="!openOffset" class="fa float-right"></i>
+            <i [class.fa-folder-open-o]="openOffset" [tooltip]="openOffset ? 'Close' : 'Open'"
+               [class.fa-folder-o]="!openOffset" class="fa float-right"></i>
             <div class="clearfix"></div>
           </a>
           <ul class="list-group bg-transparent text-white" *ngIf="openOffset">
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">All : {{component.offset_all == -1 ? '' : component.offset_all}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_all" type="range" min="-1" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">All
+                : {{component.offset_all == -1 ? '' : component.offset_all}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_all" type="range"
+                     min="-1" max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XL : {{component.offset_xl == -1 ? '' : component.offset_xl}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_xl" type="range" min="-1" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">XL
+                : {{component.offset_xl == -1 ? '' : component.offset_xl}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_xl" type="range"
+                     min="-1" max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">LG :  {{component.offset_lg == -1 ? '' : component.offset_lg}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_lg" type="range" min="-1" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">LG
+                :  {{component.offset_lg == -1 ? '' : component.offset_lg}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_lg" type="range"
+                     min="-1" max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">MD :  {{component.offset_md == -1 ? '' : component.offset_md}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_md" type="range" min="-1" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">MD
+                :  {{component.offset_md == -1 ? '' : component.offset_md}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_md" type="range"
+                     min="-1" max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">SM :  {{component.offset_sm == -1 ? '' : component.offset_sm}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_sm" type="range" min="-1" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">SM
+                :  {{component.offset_sm == -1 ? '' : component.offset_sm}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_sm" type="range"
+                     min="-1" max="12"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XS :  {{component.offset_xs == -1 ? '' : component.offset_xs}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_xs" type="range" min="-1" max="12"></li>
+              <label class="list-group-item-label pl-0 m-0">XS
+                :  {{component.offset_xs == -1 ? '' : component.offset_xs}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.offset_xs" type="range"
+                     min="-1" max="12"></li>
           </ul>
         </li>
         <li class="pl-1 pr-1 list-group-item bg-transparent">
-          <a  (click)="openPadding=!openPadding" style="cursor: pointer">
+          <a (click)="openPadding=!openPadding" style="cursor: pointer">
             <i class="fa fa-align-left mr-2 mb-2 ml-2"></i>Horizontal Padding
-            <i [class.fa-folder-open-o]="openPadding" [tooltip]="openPadding ? 'Close' : 'Open'" [class.fa-folder-o]="!openPadding" class="fa float-right"></i>
+            <i [class.fa-folder-open-o]="openPadding" [tooltip]="openPadding ? 'Close' : 'Open'"
+               [class.fa-folder-o]="!openPadding" class="fa float-right"></i>
             <div class="clearfix"></div>
           </a>
           <ul class="list-group bg-transparent text-white" *ngIf="openPadding">
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">All : {{component.horizontal_padding_all == padding_size.NONE ? '' : component.horizontal_padding_all}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_all" type="range" min="-1" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">All
+                : {{component.horizontal_padding_all == padding_size.NONE ? '' : component.horizontal_padding_all}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_all"
+                     type="range" min="-1" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XL : {{component.horizontal_padding_xl == padding_size.NONE ? '' : component.horizontal_padding_xl}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_xl" type="range" min="-1" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">XL
+                : {{component.horizontal_padding_xl == padding_size.NONE ? '' : component.horizontal_padding_xl}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_xl"
+                     type="range" min="-1" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">LG :  {{component.horizontal_padding_lg == padding_size.NONE ? '' : component.horizontal_padding_lg}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_lg" type="range" min="-1" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">LG
+                :  {{component.horizontal_padding_lg == padding_size.NONE ? '' : component.horizontal_padding_lg}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_lg"
+                     type="range" min="-1" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">MD :  {{component.horizontal_padding_md == padding_size.NONE ? '' : component.horizontal_padding_md}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_md" type="range" min="-1" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">MD
+                :  {{component.horizontal_padding_md == padding_size.NONE ? '' : component.horizontal_padding_md}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_md"
+                     type="range" min="-1" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">SM :  {{component.horizontal_padding_sm == padding_size.NONE ? '' : component.horizontal_padding_sm}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_sm" type="range" min="-1" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">SM
+                :  {{component.horizontal_padding_sm == padding_size.NONE ? '' : component.horizontal_padding_sm}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_sm"
+                     type="range" min="-1" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XS :  {{component.horizontal_padding_xs == padding_size.NONE ? '' : component.horizontal_padding_xs}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_xs" type="range" min="-1" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">XS
+                :  {{component.horizontal_padding_xs == padding_size.NONE ? '' : component.horizontal_padding_xs}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.horizontal_padding_xs"
+                     type="range" min="-1" max="5"></li>
           </ul>
         </li>
         <li class="pl-1 pr-1 list-group-item bg-transparent">
-          <a  (click)="openMargin=!openMargin" style="cursor: pointer">
+          <a (click)="openMargin=!openMargin" style="cursor: pointer">
             <i class="fa fa-align-right mr-2 mb-2 ml-2"></i>Vertical Padding
-            <i [class.fa-folder-open-o]="openMargin" [tooltip]="openMargin ? 'Close' : 'Open'" [class.fa-folder-o]="!openMargin" class="fa float-right"></i>
+            <i [class.fa-folder-open-o]="openMargin" [tooltip]="openMargin ? 'Close' : 'Open'"
+               [class.fa-folder-o]="!openMargin" class="fa float-right"></i>
             <div class="clearfix"></div>
           </a>
           <ul class="list-group bg-transparent text-white" *ngIf="openMargin">
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">All : {{component.vertical_padding_all == padding_size.ZERO ? '' : component.vertical_padding_all}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_all" type="range" min="0" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">All
+                : {{component.vertical_padding_all == padding_size.ZERO ? '' : component.vertical_padding_all}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_all"
+                     type="range" min="0" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XL : {{component.vertical_padding_xl == padding_size.ZERO ? '' : component.vertical_padding_xl}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_xl" type="range" min="0" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">XL
+                : {{component.vertical_padding_xl == padding_size.ZERO ? '' : component.vertical_padding_xl}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_xl"
+                     type="range" min="0" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">LG :  {{component.vertical_padding_lg == padding_size.ZERO ? '' : component.vertical_padding_lg}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_lg" type="range" min="0" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">LG
+                :  {{component.vertical_padding_lg == padding_size.ZERO ? '' : component.vertical_padding_lg}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_lg"
+                     type="range" min="0" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">MD :  {{component.vertical_padding_md == padding_size.ZERO ? '' : component.vertical_padding_md}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_md" type="range" min="0" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">MD
+                :  {{component.vertical_padding_md == padding_size.ZERO ? '' : component.vertical_padding_md}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_md"
+                     type="range" min="0" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">SM :  {{component.vertical_padding_sm == padding_size.ZERO ? '' : component.vertical_padding_sm}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_sm" type="range" min="0" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">SM
+                :  {{component.vertical_padding_sm == padding_size.ZERO ? '' : component.vertical_padding_sm}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_sm"
+                     type="range" min="0" max="5"></li>
             <li class="list-group-item bg-transparent">
-              <label class="list-group-item-label pl-0 m-0">XS :  {{component.vertical_padding_xs == padding_size.ZERO ? '' : component.vertical_padding_xs}}</label>
-              <input  class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_xs" type="range" min="0" max="5"></li>
+              <label class="list-group-item-label pl-0 m-0">XS
+                :  {{component.vertical_padding_xs == padding_size.ZERO ? '' : component.vertical_padding_xs}}</label>
+              <input class="custom-range" (input)="changeColSize()" [(ngModel)]="component.vertical_padding_xs"
+                     type="range" min="0" max="5"></li>
           </ul>
         </li>
       </ul>
     </tab>
-    <tab heading="Properties">Properties</tab>
+    <tab heading="Properties">
+      <ul class="list-group bg-transparent text-white">
+        <li *ngFor="let prop of component.properties" class="pl-2 pr-2 list-group-item bg-transparent property-list-item">
+          <label class="text-white">{{prop.name}}</label>
+          <ng-container [ngSwitch]="prop.type">
+            <ng-container *ngSwitchCase="property_type.TEXT">
+              <input type="text" [(ngModel)]="prop.value" class="form-control">
+            </ng-container>
+            <ng-container *ngSwitchCase="property_type.DROPDOWN">
+              <select [(ngModel)]="prop.value" class="form-control">
+                <option *ngFor="let dropOption of prop.dropDownOption" [ngValue]="dropOption.value">
+                  {{dropOption.label}}
+                </option>
+              </select>
+            </ng-container>
+          </ng-container>
+
+        </li>
+      </ul>
+    </tab>
   </tabset>
 
 </div>

@@ -35,7 +35,8 @@
       <ng-container *ngSwitchCase="component_type.ALERT_SUCCESS">
         <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
-          <alert type="success"><strong>Well done!</strong> You successfully read this important alert message.</alert>
+          <alert [type]="getPropValueById(component.properties,'type')">
+            <strong>{{getPropValueById(component.properties, 'title')}}</strong>{{getPropValueById(component.properties,'message')}}</alert>
         </app-responsive-column>
       </ng-container>
 
