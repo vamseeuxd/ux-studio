@@ -11,11 +11,11 @@
     }
   }
   .hamburger-menu{
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 100000000;
-    opacity: 0.3;
+    position: fixed;
+    left: 1px;
+    top: 1px;
+    z-index: 10000000000000000000000000;
+    opacity: 0.1;
     &:hover{
       opacity: 1;
     }

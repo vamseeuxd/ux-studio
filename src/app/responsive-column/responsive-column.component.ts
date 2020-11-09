@@ -26,10 +26,15 @@ export class ResponsiveColumnComponent implements OnInit {
   }
 
   @Input() editComponentId = '';
+  @Input() copiedComponentId;
+  @Input() cutComponentId;
 
   @Output() deleteComponent: EventEmitter<IComponentConfig> = new EventEmitter<IComponentConfig>();
   @Output() cloneComponent: EventEmitter<IComponentConfig> = new EventEmitter<IComponentConfig>();
+  @Output() cutComponent: EventEmitter<IComponentConfig> = new EventEmitter<IComponentConfig>();
+  @Output() copyComponent: EventEmitter<IComponentConfig> = new EventEmitter<IComponentConfig>();
   @Output() editComponent: EventEmitter<string> = new EventEmitter<string>();
+  @Output() cancelPasteOperation: EventEmitter<any> = new EventEmitter<any>();
 
   @HostBinding('class') className = '';
 

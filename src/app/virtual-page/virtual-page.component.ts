@@ -56,6 +56,7 @@ export enum PROPERTY_TYPE {
   TEXT = 0,
   NUMBER = 1,
   DROPDOWN = 3,
+  LIST = 4
 }
 
 export interface IPropertyDropDownOption {
@@ -67,8 +68,10 @@ export interface IPropertyDropDownOption {
 export interface IProperty {
   id: string;
   name: string;
-  value: string | number | boolean;
+  value: string | number | boolean | any[];
   type: PROPERTY_TYPE;
+  labelField?: string;
+  idField?: string;
   dropDownOption?: IPropertyDropDownOption[];
 }
 
@@ -115,11 +118,15 @@ export class VirtualPageComponent {
   components: IComponentConfig[] = [];
 
   editComponentId: string;
+  copiedComponentId: string;
+  cutComponentId: string;
 
   constructor() {
-    this.addAlertDanger();
-    setTimeout(() => this.addAlertSuccess());
-
+    /*this.addAlertDanger();
+    setTimeout(() => {
+      this.addAlertSuccess()
+      this.editComponentId = this.components[1].id;
+    });*/
   }
 
   deleteComponent(component: IComponentConfig) {
@@ -130,7 +137,7 @@ export class VirtualPageComponent {
     }
   }
 
-  getPropValueById(props: IProperty[], propId: string): string | number | boolean {
+  getPropValueById(props: IProperty[], propId: string): string | number | boolean | any[] {
     const targetedProp = props.find(d => d.id == propId);
     if (targetedProp) {
       return targetedProp.value;
@@ -146,7 +153,7 @@ export class VirtualPageComponent {
           {name: 'Title', value: 'Vamsee Kalyan', type: PROPERTY_TYPE.TEXT, id: 'title'},
           {
             name: 'Message',
-            value: 'He is a Softeware expert and Arc',
+            value: 'He is a Software expert and Arc',
             type: PROPERTY_TYPE.TEXT,
             id: 'message'
           },
@@ -189,7 +196,25 @@ export class VirtualPageComponent {
 
   addAccordion() {
     this.components.push(
-      {type: COMPONENT_TYPE.ACCORDION, ...this.getLayout(), id: new Date().getTime().toString()}
+      {
+        type: COMPONENT_TYPE.ACCORDION, ...this.getLayout(), id: new Date().getTime().toString(),
+        properties: [
+          {
+            name: 'Tabs',
+            value: [
+              {id: 'tab1', heading: 'Accordion Tab One'},
+              {id: 'tab2', heading: 'Accordion Tab Two'},
+              {id: 'tab3', heading: 'Accordion Tab Three'},
+              {id: 'tab4', heading: 'Accordion Tab Four'},
+              {id: 'tab5', heading: 'Accordion Tab Five'},
+            ],
+            labelField: 'heading',
+            idField: 'id',
+            type: PROPERTY_TYPE.LIST,
+            id: 'tabs'
+          },
+        ]
+      }
     );
   }
 
@@ -319,5 +344,18 @@ export class VirtualPageComponent {
       {...$event, id: new Date().getTime().toString()}
     );
     this.editComponentId = '';
+  }
+
+  copyComponent($event: IComponentConfig) {
+    this.copiedComponentId = $event.id;
+  }
+
+  cutComponent($event: IComponentConfig) {
+    this.cutComponentId = $event.id;
+  }
+
+  cancelPasteOperation(){
+    this.copiedComponentId = null;
+    this.cutComponentId = null;
   }
 }

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">UX-Studio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+          aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Docs <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Enterprise</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Connect</a>
+      </li>
+    </ul>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="container-fluid mt-5 pt-3">
+  <div class="row">
+    <div class="col-md-4 col-lg-3 col-sm-6 com-xs-12" *ngFor="let i of uxStudioService.allApplication">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title text-truncate">{{i.applicationName}}</h5>
+          <div class="text-right">
+            <a class="btn btn-link text-primary mr-3" (click)="showAddApplicationModel(i.id,true,'Edit Application')">Edit</a>
+            <a class="btn btn-link text-success mr-3" (click)="designApplication(i)">Design</a>
+            <a class="btn btn-link text-danger" (click)="uxStudioService.deleteApp(i)">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3 col-sm-6 com-xs-12">
+      <div class="card mb-3">
+        <div class="card-body" (click)="showAddApplicationModel('',false,'Add New Application')" style="cursor: pointer;">
+          <h5 class="card-title text-center m-0">
+            <i class="fa fa-plus"
+               style="font-size: 60px;height: 74px;line-height: 74px;"></i>
+          </h5>
+          <!--<div class="text-right" style="opacity: 0;pointer-events: none;">
+            <a class="btn btn-link text-primary mr-3">Edit</a>
+            <a class="btn btn-link text-danger">Delete</a>
+          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <pre>{{uxStudioService.activeAppDetails | json}}</pre>
+</div>

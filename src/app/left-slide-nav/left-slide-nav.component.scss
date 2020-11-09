@@ -10,6 +10,31 @@
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
+.open-button {
+  position: fixed;
+  left: 250px;
+  z-index: 10000;
+  top: calc(50% - 40px);
+  border-radius: 0;
+  height: 80px;
+  background-color: #424242;
+  border-color: #424242;
+  transition: 0.5s;
+
+  &.closed {
+    opacity: 0.5;
+
+    .fa {
+      transition: 0.5s;
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
@@ -23,7 +48,8 @@
   font-size: 20px;
   cursor: pointer;
   z-index: 100000;
-  .fa{
+
+  .fa {
     color: white;
   }
 }
@@ -50,6 +76,7 @@
   padding: 0;
   background: #535353;
   border: 5px solid #424242;
+
   .title {
     background-color: #424242;
     padding: 10px 25px;

@@ -1,53 +1,63 @@
-<ng-content></ng-content>
-<!--<button class="btn btn-danger delete-button" (click)="deleteComponent.emit(component)">
-  <i class="fa fa-trash"></i>
-</button>-->
-
-<div class="action-buttons">
-  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-warning btn-sm mr-1"
-          (click)="editComponent.emit(component.id)">
-    <i class="fa fa-edit"></i>
-  </button>
-  <button type="button" tooltip="Delete" placement="bottom" class="btn btn-danger btn-sm mr-1"
-          (click)="deleteComponent.emit(component);">
-    <i class="fa fa-trash"></i>
-  </button>
-  <button type="button" tooltip="Paste" placement="bottom" class="btn btn-info btn-sm mr-1"
-          (click)="cloneComponent.emit(component);">
-    <i class="fa fa-clone"></i>
-  </button>
-  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
-          (click)="cloneComponent.emit(component);">
-    <i class="fa fa-clone"></i>
-  </button>
-  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
-          (click)="cloneComponent.emit(component);">
-    <i class="fa fa-clone"></i>
-  </button>
-  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
-          (click)="cloneComponent.emit(component);">
-    <i class="fa fa-clone"></i>
-  </button>
-  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
-          (click)="cloneComponent.emit(component);">
-    <i class="fa fa-clone"></i>
-  </button>
-  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
-          (click)="cloneComponent.emit(component);">
-    <i class="fa fa-clone"></i>
-  </button>
-  <button type="button" tooltip="Edit" placement="bottom" class="btn btn-info btn-sm mr-1"
-          (click)="cloneComponent.emit(component);">
-    <i class="fa fa-clone"></i>
-  </button>
+<div class="w-100 position-relative component-container">
+  <ng-content></ng-content>
+  <div class="d-flex justify-content-center align-items-center action-buttons" [class.is-paste-operation]="cutComponentId || copiedComponentId">
+    <button type="button" *ngIf="!(cutComponentId || copiedComponentId)" tooltip="Edit Component" placement="bottom" class="btn btn-warning btn-sm mr-1"
+            (click)="editComponent.emit(component.id)">
+      <i class="fa fa-edit"></i>
+    </button>
+    <button type="button" *ngIf="!(cutComponentId || copiedComponentId)" tooltip="Delete Component" placement="bottom" class="btn btn-danger btn-sm mr-1"
+            (click)="deleteComponent.emit(component);">
+      <i class="fa fa-trash"></i>
+    </button>
+    <!--<button type="button" tooltip="Copy Component" placement="bottom" class="btn btn-info btn-sm mr-1"
+            (click)="cloneComponent.emit(component);">
+      <i class="fa fa-clone"></i>
+    </button>-->
+    <button type="button" (click)="copyComponent.emit(component)" *ngIf="!(cutComponentId || copiedComponentId)" tooltip="Copy Component" placement="bottom" class="btn btn-info btn-sm mr-1">
+      <i class="fa fa-copy"></i>
+    </button>
+    <button type="button" (click)="cutComponent.emit(component)" *ngIf="!(cutComponentId || copiedComponentId)" tooltip="Cut Component" placement="bottom" class="btn btn-info btn-sm mr-1">
+      <i class="fa fa-cut"></i>
+    </button>
+    <ng-container *ngIf="!(cutComponentId || copiedComponentId)">
+    <button type="button" tooltip="Add New Component Before" placement="bottom" class="btn btn-info btn-sm mr-1">
+      <i class="fa fa-step-backward"></i>
+    </button>
+    <button type="button" tooltip="Add New Component After" placement="bottom" class="btn btn-info btn-sm mr-1">
+      <i class="fa fa-step-forward"></i>
+    </button>
+    <button type="button" tooltip="Add New Component as Child" placement="bottom" class="btn btn-info btn-sm mr-1">
+      <i class="fa fa-download"></i>
+    </button>
+    </ng-container>
+    <button type="button" *ngIf="cutComponentId || copiedComponentId" tooltip="Paste Component before" placement="bottom" class="paste-before-component btn btn-info btn-sm mr-1">
+      <i class="fa fa-backward"></i>
+    </button>
+    <button type="button" *ngIf="cutComponentId || copiedComponentId" tooltip="Paste Component After" placement="bottom" class="btn btn-info btn-sm mr-1 paste-after-component">
+      <i class="fa fa-forward"></i>
+    </button>
+    <button type="button" *ngIf="cutComponentId || copiedComponentId" tooltip="Paste Component as Child" placement="bottom" class="btn btn-info btn-sm mr-1">
+      <i class="fa fa-arrow-circle-down"></i>
+    </button>
+    <button type="button" *ngIf="cutComponentId || copiedComponentId" (click)="cancelPasteOperation.emit(null)" tooltip="Cancel Paste Component" placement="bottom" class="cancel-paste-operation btn btn-dark btn-sm mr-1">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
 </div>
+<div *ngIf="editComponentId == component.id" class="component-border"></div>
 
-<div [class.show]="editComponentId == component.id" class="shadow components-list">
+<div [class.show]="editComponentId == component.id" class="shadow components-list ux-studio-box" cdkDrag>
   <h6 class="text-white m-0 title">Edit {{_lodash.startCase(component.type)}}
     <i style="cursor: pointer" class="ml-3 fa fa-close text-white" (click)="editComponent.emit('')"></i>
+    <div class="ux-studio-handle" cdkDragHandle>
+      <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+        <path d="M0 0h24v24H0z" fill="none"></path>
+      </svg>
+    </div>
   </h6>
   <tabset [justified]="true">
-    <tab heading="Layout">
+    <tab class="ux-studio-scroll" heading="Layout">
       <ul class="list-group bg-transparent text-white">
         <li class="pl-2 pr-2 list-group-item bg-transparent">
           <a (click)="openWidth=!openWidth" style="cursor: pointer">
@@ -211,9 +221,10 @@
         </li>
       </ul>
     </tab>
-    <tab heading="Properties">
+    <tab class="ux-studio-scroll" heading="Properties">
       <ul class="list-group bg-transparent text-white">
-        <li *ngFor="let prop of component.properties" class="pl-2 pr-2 list-group-item bg-transparent property-list-item">
+        <li *ngFor="let prop of component.properties"
+            class="pl-2 pr-2 list-group-item bg-transparent property-list-item">
           <label class="text-white">{{prop.name}}</label>
           <ng-container [ngSwitch]="prop.type">
             <ng-container *ngSwitchCase="property_type.TEXT">
@@ -226,10 +237,16 @@
                 </option>
               </select>
             </ng-container>
+            <ng-container *ngSwitchCase="property_type.LIST">
+              <app-manage-list [(data)]="prop.value" [idField]="prop.idField"
+                               [labelField]="prop.labelField"></app-manage-list>
+            </ng-container>
           </ng-container>
 
         </li>
       </ul>
+    </tab>
+    <tab class="ux-studio-scroll" heading="Events">
     </tab>
   </tabset>
 

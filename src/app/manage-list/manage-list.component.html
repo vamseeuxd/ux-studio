@@ -1,0 +1,32 @@
+<ul class="list-group bg-transparent text-white">
+  <li class="pl-2 pr-2 list-group-item bg-transparent property-list-item">
+    <input (keyup.enter)="isNewItemValid ? saveNewValue() : null" style="padding-right: 45px;" type="text" class="form-control" [(ngModel)]="newValue">
+    <button [disabled]="!isNewItemValid" (click)="saveNewValue()" class="button-mode btn btn-secondary btn-sm m-0 save-button"><i class="fa fa-save"></i></button>
+    <ul  cdkDragLockAxis="y" cdkDropList (cdkDropListDropped)="moveItem($event)" class="list-group bg-transparent text-white mt-1 ux-studio-scroll list-of-items-to-edit ux-studio-drag-list position-relative">
+      <h4 class="no-items-found text-light w-100 d-block text-center mt-5" *ngIf="data.length==0">No Items to Show</h4>
+      <li cdkDrag *ngFor="let item of data; let $ind = index" class="pl-2 pr-2 list-group-item bg-transparent property-list-item ux-studio-drag-list-item">
+        <ng-container *ngIf="itemToEdit != getItemId(item) ">
+          <div class="w-100 d-flex justify-content-between align-items-center position-relative">
+              <span style="width: calc(100% - 120px);" [title]="getDisplayedLabel(item)" class="text-white text-truncate">{{getDisplayedLabel(item)}}</span>
+              <div class="action-bar" [class.disabled]="itemToEdit">
+                <i class="button-mode fa fa-arrows text-white mr-4" cdkDragHandle></i>
+                <i class="button-mode fa fa-trash text-white mr-4" (click)="deleteItem($ind)"></i>
+                <i class="button-mode fa fa-edit text-white" (click)="onItemEditClick(item)"></i>
+              </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="itemToEdit == getItemId(item) ">
+          <div class="w-100 text-right">
+            <label style="width: 200px;" class="d-block text-left text-truncate"><code>Edit</code> {{getDisplayedLabel(item)}}</label>
+            <input (keyup.enter)="isEditItemValid ? saveEditedValue(item) : null" #editInput [(ngModel)]="editValue" type="text" class="form-control mb-2">
+            {{editInput.focus()}}
+            <div>
+              <button class="button-mode btn btn-dark btn-sm m-0 mr-3" (click)="onCancelItemEditClick()"><i class="fa fa-times"></i></button>
+              <button [disabled]="!isEditItemValid" (click)="saveEditedValue(item)" class="button-mode btn btn-secondary btn-sm m-0"><i class="fa fa-save"></i></button>
+            </div>
+          </div>
+        </ng-container>
+      </li>
+    </ul>
+  </li>
+</ul>

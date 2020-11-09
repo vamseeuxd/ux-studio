@@ -1,5 +1,4 @@
-<div class="container-fluid pb-5">
-  <button class="btn btn-dark hamburger-menu" *ngIf="!leftSideMenu.open" (click)="leftSideMenu.open = true"><i class="fa fa-bars"></i></button>
+<div class="container-fluid pb-5 pt-3">
   <app-left-slide-nav #leftSideMenu></app-left-slide-nav>
   <div class="btn-group" dropdown class="add-component-drop-down" *ngIf="components.length==0">
     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
@@ -33,7 +32,13 @@
   <div class="row">
     <ng-container *ngFor="let component of components" [ngSwitch]="component.type">
       <ng-container *ngSwitchCase="component_type.ALERT_SUCCESS">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <alert [type]="getPropValueById(component.properties,'type')">
             <strong>{{getPropValueById(component.properties, 'title')}}</strong>{{getPropValueById(component.properties,'message')}}</alert>
@@ -41,7 +46,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.ALERT_INFO">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <alert type="info"><strong>Heads up!</strong> This alert needs your attention, but it's not super important.
           </alert>
@@ -49,21 +60,39 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.ALERT_WARNING">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <alert type="warning"><strong>Warning!</strong> Better check yourself, you're not looking too good.</alert>
         </app-responsive-column>
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.ALERT_DANGER">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <alert type="danger"><strong>Oh snap!</strong> Change a few things up and try submitting again.</alert>
         </app-responsive-column>
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.CAROUSEL">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <carousel>
             <slide><img src="https://valor-software.com/ngx-bootstrap/assets/images/nature/1.jpg" alt="first slide"
@@ -77,34 +106,43 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.ACCORDION">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <accordion>
-            <accordion-group heading="Static Header">
+            <accordion-group [heading]="tab.heading" *ngFor="let tab of getPropValueById(component.properties,'tabs')">
               This content is straight in the template.
-            </accordion-group>
-            <accordion-group heading="Another group">
-              <p>Some content</p>
-            </accordion-group>
-            <accordion-group heading="Another group">
-              <p>Some content</p>
-            </accordion-group>
-            <accordion-group heading="Another group">
-              <p>Some content</p>
             </accordion-group>
           </accordion>
         </app-responsive-column>
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.PROGRESSBAR">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <progressbar [value]="55"></progressbar>
         </app-responsive-column>
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.TAB_SET">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <tabset>
             <tab heading="Basic title" id="tab1">Basic content</tab>
@@ -115,14 +153,26 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.PAGINATION">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <pagination [totalItems]="64"></pagination>
         </app-responsive-column>
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.CARD">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
           <div class="card text-center">
             <div class="card-header">
@@ -140,9 +190,14 @@
         </app-responsive-column>
       </ng-container>
 
-
       <ng-container *ngSwitchCase="component_type.POPOVER">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                    <button type="button" class="btn btn-default btn-secondary"
                                popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
@@ -153,10 +208,14 @@
         </app-responsive-column>
       </ng-container>
 
-
-
       <ng-container *ngSwitchCase="component_type.RATING">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
 
           <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating>
@@ -168,7 +227,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.SORTTABLE">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                   <div class="row">
                   <div class="col-xs-6 col-6 col-md-5 col-lg-3">
@@ -201,9 +266,14 @@
         </app-responsive-column>
       </ng-container>
 
-
       <ng-container *ngSwitchCase="component_type.TIMEPICKER">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                                <ng-container *ngIf="form">
                                 <form [formGroup]="form">
@@ -224,7 +294,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.TOOLTIP">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
 
                <button type="button" class="btn btn-primary"  tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
@@ -235,7 +311,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.TYPEAHEAD">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                                <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
                                <input [(ngModel)]="selected"
@@ -248,7 +330,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.MODAL">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                                <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
 
@@ -269,7 +357,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.DROPDOWN">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                                <div class="btn-group" dropdown>
                                 <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
@@ -292,7 +386,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.DATEPICKER">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                                <div class="row">
                                 <div class="col-xs-12 col-12 col-md-4 form-group">
@@ -308,7 +408,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="component_type.BUTTON">
-        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)" (cloneComponent)="cloneComponent($event)"
+        <app-responsive-column [editComponentId]="editComponentId" (editComponent)="editComponent($event)"
+                               [copiedComponentId]="copiedComponentId"
+                               [cutComponentId]="cutComponentId"
+                               (cloneComponent)="cloneComponent($event)"
+                               (copyComponent)="copyComponent($event)"
+                               (cancelPasteOperation)="cancelPasteOperation()"
+                               (cutComponent)="cutComponent($event)"
                                (deleteComponent)="deleteComponent($event)" [component]="component">
                                <button type="button" class="btn btn-primary">
                                 Single Button
@@ -317,7 +423,6 @@
 
                               </app-responsive-column>
                               </ng-container>
-
 
     </ng-container>
 

@@ -43,8 +43,11 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
 import {TimepickerModule} from 'ngx-bootstrap/timepicker';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {TypeaheadModule} from 'ngx-bootstrap/typeahead';
-import { ResponsiveColumnComponent } from './responsive-column/responsive-column.component';
-import { LeftSlideNavComponent } from './left-slide-nav/left-slide-nav.component';
+import {ResponsiveColumnComponent} from './responsive-column/responsive-column.component';
+import {LeftSlideNavComponent} from './left-slide-nav/left-slide-nav.component';
+import {ManageListComponent} from './manage-list/manage-list.component';
+import {AppLayoutSelectorComponent} from './app-layout-selector/app-layout-selector.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,13 @@ import { LeftSlideNavComponent } from './left-slide-nav/left-slide-nav.component
     VirtualPageComponent,
     ResponsiveColumnComponent,
     LeftSlideNavComponent,
+    ManageListComponent,
+    AppLayoutSelectorComponent,
+    DashboardComponent,
 
+  ],
+  entryComponents: [
+    AppLayoutSelectorComponent
   ],
   imports: [
     BrowserModule,

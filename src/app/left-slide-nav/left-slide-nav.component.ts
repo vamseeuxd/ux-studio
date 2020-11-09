@@ -25,7 +25,7 @@ export class LeftSlideNavComponent implements OnInit {
         { label: 'Clone Services', id: 'submenu-1-2' },
         { label: 'Edit Services', id: 'submenu-1-3' },
         { label: 'Delete Services', id: 'submenu-1-4' },
-      
+
       ]
     }, {
       open: false, label: 'Manage Modals', id: 'menu-1', subMenu: [
@@ -33,19 +33,19 @@ export class LeftSlideNavComponent implements OnInit {
         { label: 'Clone Modal', id: 'submenu-1-2' },
         { label: 'Edit Modal', id: 'submenu-1-4' },
         { label: 'Delete Modal', id: 'submenu-1-3' },
-        
+
       ]
     },  {
       open: false, label: 'Manage Code', id: 'menu-1', subMenu: [
         { label: 'Export Angular Code', id: 'submenu-1-1' },
         { label: 'Export React Code', id: 'submenu-1-2' },
-        
+
       ]
     }, {
       open: false, label: 'Manage Design', id: 'menu-1', subMenu: [
         { label: 'Save Design', id: 'submenu-1-1' },
         { label: 'Import Design', id: 'submenu-1-2' },
-        
+
       ]
     }
   ];

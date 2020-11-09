@@ -1,0 +1,48 @@
+:host {
+  .form-control {
+    border-radius: 0;
+    background-color: #535353;
+    border: 1px solid #424242;
+    color: white;
+  }
+
+  .list-of-items-to-edit {
+    min-height: 170px;
+    max-height: 170px;
+    overflow-y: auto;
+  }
+
+  .no-items-found {
+    opacity: 0.5;
+  }
+
+  .save-button {
+    position: absolute;
+    top: 15px;
+    right: 13px;
+  }
+
+  .property-list-item {
+    &.ux-studio-drag-list-item {
+      &:hover {
+        .action-bar {
+          display: block;
+        }
+      }
+
+      .action-bar {
+        position: absolute;
+        width: 120px;
+        text-align: right;
+        top: 0;
+        right: 0;
+        display: none;
+
+        &.disabled {
+          opacity: 0.3;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}

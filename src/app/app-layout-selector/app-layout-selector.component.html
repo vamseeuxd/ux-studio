@@ -1,0 +1,62 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="w-100" #applicationForm="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <label for="applicationName">Application Name : <code>*</code></label>
+        <input autocomplete="off" required minlength="3" maxlength="25"
+               [class.is-invalid]="applicationForm.controls['applicationName']?.dirty && applicationForm.controls['applicationName']?.errors"
+               [class.is-valid]="!applicationForm.controls['applicationName']?.errors"
+               type="text" class="form-control" id="applicationName" [ngModel]="activeAppDetails.applicationName" name="applicationName">
+        <small [class.text-danger]="applicationForm.controls['applicationName']?.dirty && applicationForm.controls['applicationName']?.errors"
+               [class.text-muted]="!applicationForm.controls['applicationName']?.errors"
+               class="form-text text-muted">
+          Application Name is required in between 3 to 25 charters
+        </small>
+      </div>
+      <div class="form-group col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <label for="tagLine">Tag Line : <code>*</code></label>
+        <input autocomplete="off" required min="3" max="25" type="text"
+               [class.is-invalid]="applicationForm.controls['tagLine']?.dirty && applicationForm.controls['tagLine']?.errors"
+               [class.is-valid]="!applicationForm.controls['tagLine']?.errors"
+               class="form-control" id="tagLine" [ngModel]="activeAppDetails.tagLine" name="tagLine">
+        <small [class.text-danger]="applicationForm.controls['tagLine']?.dirty && applicationForm.controls['tagLine']?.errors"
+               [class.text-muted]="!applicationForm.controls['tagLine']?.errors"
+               class="form-text text-muted">
+          Tag Line is required in between 3 to 25 charters
+        </small>
+      </div>
+      <div class="form-group col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <label for="logo">Logo : </label>
+        <input autocomplete="off" type="file" class="form-control-file" id="logo" [ngModel]="activeAppDetails.logo" name="logo">
+      </div>
+      <input required type="hidden" id="layout" [ngModel]="selectedLayout" name="layout">
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div class="row">
+        <div class=" col-lg-4 col-md-4 col-sm-6 com-xs-12 text-center" *ngFor="let layout of layouts">
+          <div class="button-mode card layout-card d-inline-block mt-3" (click)="selectedLayout = layout.name"
+               [class.active]="layout.name == selectedLayout"
+               [class.border-primary]="layout.name == selectedLayout">
+            <div class="card-body position-relative">
+              <div class="border selected-icon" [class.bg-primary]="layout.name == selectedLayout"></div>
+              <h6 class="card-title">{{layout.name}}</h6>
+              <img [src]="layout.path" class="w-100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
+  <button type="button" class="btn btn-primary" (click)="saveLayout(applicationForm.value);bsModalRef.hide();" [disabled]="applicationForm.invalid">Save</button>
+</div>
