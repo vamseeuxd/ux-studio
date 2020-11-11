@@ -122,11 +122,11 @@ export class VirtualPageComponent {
   cutComponentId: string;
 
   constructor() {
-    /*this.addAlertDanger();
-    setTimeout(() => {
-      this.addAlertSuccess()
-      this.editComponentId = this.components[1].id;
-    });*/
+    this.addAlertSuccess();
+    this.addAlertInfo();
+    this.addAlertWarning();
+    this.addAlertDanger();
+    // this.editComponentId = this.components[1].id;
   }
 
   deleteComponent(component: IComponentConfig) {
@@ -242,63 +242,7 @@ export class VirtualPageComponent {
     );
   }
 
-  addpopover() {
-    this.components.push(
-      {type: COMPONENT_TYPE.POPOVER, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-  addrating() {
-    this.components.push(
-      {type: COMPONENT_TYPE.RATING, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-  addsorttable() {
-    this.components.push(
-      {type: COMPONENT_TYPE.SORTTABLE, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-  addtimepicker() {
-    this.components.push(
-      {type: COMPONENT_TYPE.TIMEPICKER, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-  addtooltip() {
-    this.components.push(
-      {type: COMPONENT_TYPE.TOOLTIP, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-
-  addtypeahead() {
-    this.components.push(
-      {type: COMPONENT_TYPE.TYPEAHEAD, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-
-  addmodal() {
-    this.components.push(
-      {type: COMPONENT_TYPE.MODAL, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-  adddropdown() {
-    this.components.push(
-      {type: COMPONENT_TYPE.DROPDOWN, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-  adddatepicker() {
-    this.components.push(
-      {type: COMPONENT_TYPE.DATEPICKER, ...this.getLayout(), id: new Date().getTime().toString()}
-    );
-  }
-
-  addbutton() {
+  addButton() {
     this.components.push(
       {type: COMPONENT_TYPE.BUTTON, ...this.getLayout(), id: new Date().getTime().toString()}
     );
@@ -354,7 +298,7 @@ export class VirtualPageComponent {
     this.cutComponentId = $event.id;
   }
 
-  cancelPasteOperation(){
+  cancelPasteOperation() {
     this.copiedComponentId = null;
     this.cutComponentId = null;
   }
